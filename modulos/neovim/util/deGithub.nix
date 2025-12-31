@@ -1,0 +1,11 @@
+{ pkgs, lib }:
+{ rev, ref, repo, dependencies ? [ ], nvimSkipModules ? [ ], }:
+pkgs.vimUtils.buildVimPlugin {
+  name = "${lib.strings.sanitizeDerivationName repo}";
+  src = builtins.fetchGit {
+    url = "https://github.com/${repo}.git";
+    ref = ref;
+    rev = rev;
+  };
+  inherit dependencies nvimSkipModules;
+}
