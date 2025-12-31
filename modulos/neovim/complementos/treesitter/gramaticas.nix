@@ -1,5 +1,9 @@
 { pkgs }:
 with pkgs.vimPlugins.nvim-treesitter-parsers; [
+  gitcommit
+  gitignore
+  git_config
+  gitattributes
   lua
   bash
   c
@@ -9,9 +13,11 @@ with pkgs.vimPlugins.nvim-treesitter-parsers; [
   html
   java
   javascript
+  jsdoc
   typescript
   json
   lua
+  luadoc
   markdown
   markdown_inline
   nix

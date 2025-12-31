@@ -1,20 +1,26 @@
-{ pkgs, formatearDependenciasDeLazy, ... }:
-let
+{ pkgs, ... }: {
+  paquete = pkgs.vimPlugins.fyler-nvim;
   dependencias = with pkgs.vimPlugins; [ mini-icons ];
-  # lua
-in ''
-  return {
-    dir = "${pkgs.vimPlugins.fyler-nvim}",
-    name = "Fyler",
-    lazy = false,
-    dependencies = { ${formatearDependenciasDeLazy dependencias} },
-    opts = {},
-    keys = {
-      { 
-        "<C-n>",
-        function() require("fyler").toggle({ kind = "split_left" }) end,
-        desc = "Fyler: Alternar explorador"
-      }
-    }
-  }
-''
+  config = # lua
+    ''
+      ---@param paquete string
+      ---@param dependencias string[]
+      ---@diagnostic disable-next-line: miss-name
+      function(paquete, dependencias)
+        return {
+          dir = paquete,
+          name = "Fyler",
+          lazy = false,
+          dependencies = dependencias,
+          opts = {},
+          keys = {
+            { 
+              "<C-n>",
+              function() require("fyler").toggle({ kind = "split_left" }) end,
+              desc = "Fyler: Alternar explorador"
+            }
+          }
+        }
+      end
+    '';
+}

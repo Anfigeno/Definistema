@@ -27,12 +27,12 @@ let
   formatearDependenciasDeLazy = import ./util/formatearDependenciasDeLazy.nix;
 in map (nombreDeComplemento:
   #lua
-  ''
-    (function()
-      ${
-        import ./complementos/${nombreDeComplemento} {
-          inherit pkgs deGithub formatearDependenciasDeLazy lib;
-        }
-      }
-    end)()
+  let
+    complemento =
+      import ./complementos/${nombreDeComplemento} { inherit pkgs deGithub; };
+    #lua
+  in ''
+    (${complemento.config})("${complemento.paquete}", { ${
+      formatearDependenciasDeLazy complemento.dependencias
+    } })
   '') nombresDeComplementos

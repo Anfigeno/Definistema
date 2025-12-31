@@ -1,12 +1,18 @@
-{ pkgs, formatearDependenciasDeLazy, ... }:
-let
+{ pkgs, ... }: {
+  paquete = pkgs.vimPlugins.fidget-nvim;
   dependencias = [ ];
-  # lua
-in ''
-  return {
-    dir = "${pkgs.vimPlugins.fidget-nvim}",
-    name = "Fidget",
-    dependencies = { ${formatearDependenciasDeLazy dependencias} },
-    opts = {}
-  }
-''
+  config = # lua
+    ''
+      ---@param paquete string
+      ---@param dependencias string[]
+      ---@diagnostic disable-next-line: miss-name
+      function(paquete, dependencias)
+        return {
+          dir = paquete,
+          name = "Fidget",
+          dependencies = dependencias,
+          opts = {}
+        }
+      end
+    '';
+}
