@@ -1,6 +1,10 @@
 { pkgs, lib }:
 let
   nombresDeComplementos = [
+    "lazydev"
+    "keep-split-ratio"
+    "ts-autotag"
+    "smear-cursor"
     "tabout"
     "todo-comments"
     "inc-rename"
