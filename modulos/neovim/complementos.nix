@@ -1,6 +1,10 @@
 { pkgs, lib }:
 let
   nombresDeComplementos = [
+    "statuscol"
+    "satellite"
+    "gitsigns"
+    "ufo"
     "otter"
     "bufferline"
     "neoformat"
