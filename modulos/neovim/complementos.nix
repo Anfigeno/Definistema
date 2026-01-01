@@ -1,6 +1,10 @@
 { pkgs, lib }:
 let
   nombresDeComplementos = [
+    "tabout"
+    "todo-comments"
+    "inc-rename"
+    "colorizer"
     "statuscol"
     "satellite"
     "gitsigns"
