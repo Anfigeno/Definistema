@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 # lua
 ''
   vim.opt.termguicolors = true
@@ -9,7 +10,7 @@
   vim.opt.tabstop = 2
   vim.opt.clipboard = "unnamedplus"
   vim.opt.relativenumber = true
-  vim.opt.shell = "fish"
+  vim.opt.shell = "${pkgs.fish}/bin/fish"
   vim.o.laststatus = 3
   vim.g.mapleader = " "
   vim.g.maplocalleader = "\\"

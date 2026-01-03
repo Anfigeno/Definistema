@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
-  paquete = pkgs.vimPlugins.which-key-nvim;
-  dependencias = with pkgs.vimPlugins; [ mini-icons ];
+{ pkgs, ... }:
+{
+  paquete = pkgs.vimPlugins.mini-icons;
+  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
@@ -9,11 +10,13 @@
       function(paquete, dependencias)
         return {
           dir = paquete,
-          name = "Wich Key",
+          name = "Mini Icons",
           dependencies = dependencias,
-          opts = {
-            preset = "helix"
-          },
+          config = function()
+            local MiniIcons = require("mini.icons")
+            MiniIcons.setup()
+            MiniIcons.mock_nvim_web_devicons()
+          end
         }
       end
     '';

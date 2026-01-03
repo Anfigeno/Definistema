@@ -31,7 +31,9 @@ let
     ./cmp
     ./lspconfig
     ./fyler
-    ./mini
+    ./mini-move
+    ./mini-icons
+    ./mini-surround
     ./noice
     ./dashboard
     ./stay-centered

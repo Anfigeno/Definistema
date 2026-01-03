@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   paquete = pkgs.vimPlugins.fyler-nvim;
-  dependencias = with pkgs.vimPlugins; [ mini-nvim ];
+  dependencias = with pkgs.vimPlugins; [ mini-icons ];
   config = # lua
     ''
       ---@param paquete string
