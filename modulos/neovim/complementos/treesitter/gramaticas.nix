@@ -1,5 +1,6 @@
 { pkgs }:
 with pkgs.vimPlugins.nvim-treesitter-parsers; [
+  nickel
   gitcommit
   gitignore
   git_config

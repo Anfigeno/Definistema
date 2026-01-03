@@ -36,7 +36,7 @@
               function ()
                 require("tiny-code-action").code_action()
               end,
-              desc = "Acción de código"
+              desc = "LSP: Acción de código"
             }
           }
         }

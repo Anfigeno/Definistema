@@ -12,9 +12,9 @@
           opts = {},
           keys = {
             {
-              "<space>ir",
+              "grn",
               ":IncRename ",
-              desc = "IncRename"
+              desc = "LSP: Renombrar"
             }
           }
         }
