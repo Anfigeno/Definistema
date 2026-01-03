@@ -1,10 +1,9 @@
-{ pkgs, deGithub, ... }:
+{ pkgs, ... }:
 {
   paquete = pkgs.vimPlugins.lualine-nvim;
   dependencias = with pkgs.vimPlugins; [
     mini-icons
     nvim-navic
-    (import ../direnv { inherit pkgs deGithub; }).paquete
   ];
   config = # lua
     ''
@@ -65,6 +64,16 @@
               return table.concat(mensaje)
             end
 
+            local function modulo_direnv()
+              local ok, direnv = pcall(require, "direnv")
+
+              if not ok then
+                return ""
+              end
+
+              return direnv.statusline()
+            end
+
             require("lualine").setup({
               options = {
                 theme = {
@@ -93,9 +102,7 @@
                   obtener_lsps_activos,
                 },
                 lualine_y = {
-                  function ()
-                    return require("direnv").statusline()
-                  end
+                  modulo_direnv
                 },
                 lualine_z = {
                   obtener_icono,

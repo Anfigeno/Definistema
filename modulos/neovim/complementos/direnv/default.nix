@@ -15,6 +15,7 @@
         return {
           dir = paquete,
           name = "Direnv",
+          event = { "BufReadPre", "BufNewFile" },
           dependencies = dependencias,
           config = function ()
             require("direnv").setup({
