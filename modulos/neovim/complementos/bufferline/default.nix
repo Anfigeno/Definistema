@@ -11,7 +11,7 @@
         return {
           dir = paquete,
           name = "Bufferline",
-          lazy = false,
+          event = "BufEnter",
           dependencies = dependencias,
           config = function()
             require("scope").setup({})

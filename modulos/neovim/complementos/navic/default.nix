@@ -10,6 +10,7 @@
         return {
           dir = paquete,
           name = "Navic",
+          event = "BufEnter",
           dependencies = dependencias,
           config = function()
             require("nvim-navic").setup({

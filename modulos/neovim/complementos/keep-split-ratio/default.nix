@@ -15,7 +15,7 @@
         return {
           dir = paquete,
           name = "Keep Split Ratio",
-          lazy = false,
+          event = "BufEnter",
           dependencies = dependencias,
           opts = {},
         }

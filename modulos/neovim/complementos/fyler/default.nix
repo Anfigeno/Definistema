@@ -11,7 +11,6 @@
         return {
           dir = paquete,
           name = "Fyler",
-          lazy = false,
           dependencies = dependencias,
           opts = {},
           keys = {
