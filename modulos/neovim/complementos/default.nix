@@ -1,6 +1,7 @@
 { pkgs, lib }:
 let
   rutasDeComplementos = [
+    ./markview
     ./direnv
     ./wich-key
     ./lazydev
