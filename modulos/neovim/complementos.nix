@@ -1,6 +1,7 @@
 { pkgs, lib }:
 let
   nombresDeComplementos = [
+    "wich-key"
     "lazydev"
     "keep-split-ratio"
     "ts-autotag"
@@ -37,14 +38,15 @@ let
 
   deGithub = import ./util/deGithub.nix { inherit pkgs lib; };
   formatearDependenciasDeLazy = import ./util/formatearDependenciasDeLazy.nix;
-in map (nombreDeComplemento:
+in
+map (
+  nombreDeComplemento:
   #lua
   let
-    complemento =
-      import ./complementos/${nombreDeComplemento} { inherit pkgs deGithub; };
+    complemento = import ./complementos/${nombreDeComplemento} { inherit pkgs deGithub; };
     #lua
-  in ''
-    (${complemento.config})("${complemento.paquete}", { ${
-      formatearDependenciasDeLazy complemento.dependencias
-    } })
-  '') nombresDeComplementos
+  in
+  ''
+    (${complemento.config})("${complemento.paquete}", { ${formatearDependenciasDeLazy complemento.dependencias} })
+  ''
+) nombresDeComplementos

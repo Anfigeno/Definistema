@@ -15,7 +15,7 @@
           opts = {},
           keys = {
             {
-              "<s-r>",
+              "<space>ir",
               ":IncRename ",
               desc = "IncRename"
             }

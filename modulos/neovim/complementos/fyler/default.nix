@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   paquete = pkgs.vimPlugins.fyler-nvim;
-  dependencias = with pkgs.vimPlugins; [ mini-icons ];
+  dependencias = with pkgs.vimPlugins; [ mini-nvim ];
   config = # lua
     ''
       ---@param paquete string
@@ -14,9 +15,11 @@
           dependencies = dependencias,
           opts = {},
           keys = {
-            { 
+            {
               "<C-n>",
-              function() require("fyler").toggle({ kind = "split_left" }) end,
+              function()
+                require("fyler").toggle({ kind = "split_left" })
+              end,
               desc = "Fyler: Alternar explorador"
             }
           }

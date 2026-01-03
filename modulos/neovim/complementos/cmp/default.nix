@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   paquete = pkgs.vimPlugins.nvim-cmp;
   dependencias = with pkgs.vimPlugins; [
     cmp-nvim-lsp
@@ -48,9 +49,8 @@
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
                 { name = "lazydev" },
-              }, {
+                { name = "path" },
                 { name = "buffer" },
-                { name = "codeium" },
               }),
               formatting = {
                 fields = { "kind", "abbr", "menu" },

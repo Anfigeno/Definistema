@@ -10,6 +10,7 @@
         return {
           dir = paquete,
           name = "Fidget",
+          event = "VeryLazy",
           dependencies = dependencias,
           opts = {}
         }
