@@ -1,5 +1,6 @@
 { pkgs }:
-with pkgs.vimPlugins.nvim-treesitter-parsers; [
+with pkgs.vimPlugins.nvim-treesitter-parsers;
+[
   nickel
   gitcommit
   gitignore
@@ -17,6 +18,7 @@ with pkgs.vimPlugins.nvim-treesitter-parsers; [
   jsdoc
   typescript
   json
+  fish
   lua
   luadoc
   markdown

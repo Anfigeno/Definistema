@@ -1,5 +1,6 @@
-{ pkgs, ... }: {
-  configuracion = {
+{ pkgs, ... }:
+{
+  paquete = {
     name = "done";
     src = pkgs.fetchFromGitHub {
       owner = "franciscolourenco";
@@ -8,6 +9,4 @@
       sha256 = "sha256-GZ1ZpcaEfbcex6XvxOFJDJqoD9C5out0W4bkkn768r0=";
     };
   };
-
-  dependencias = [ ];
 }
