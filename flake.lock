@@ -20,6 +20,21 @@
         "type": "github"
       }
     },
+    "mestizo-nix": {
+      "locked": {
+        "lastModified": 1767473498,
+        "narHash": "sha256-u7jrttGktHh1b2mIooUMS3ancsJ4AenG79Wi/vQLhxA=",
+        "owner": "TemaMestizo",
+        "repo": "MestizoNix",
+        "rev": "ffbd7d08bfe911922c9a8a31604303d0d85a0ead",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TemaMestizo",
+        "repo": "MestizoNix",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1766902085,
@@ -39,6 +54,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "mestizo-nix": "mestizo-nix",
         "nixpkgs": "nixpkgs"
       }
     }

@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./delta
     ./fish
     ./git
     ./eza
