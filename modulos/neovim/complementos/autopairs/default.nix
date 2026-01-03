@@ -1,17 +1,15 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   paquete = pkgs.vimPlugins.nvim-autopairs;
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Autopairs",
           event = "InsertEnter",
-          dependencies = dependencias,
           config = function()
             require("nvim-autopairs").setup()
 

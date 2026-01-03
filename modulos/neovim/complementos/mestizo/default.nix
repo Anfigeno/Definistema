@@ -4,18 +4,15 @@
     ref = "main";
     repo = "anfigeno/mestizo.nvim";
   };
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Mestizo",
           lazy = false,
-          dependencies = dependencias,
           config = function()
             vim.cmd("colorscheme mestizo")
           end

@@ -1,6 +1,7 @@
 { pkgs, lib }:
 let
-  rutasDeComplementos = [
+  complementos = map (complemento: import complemento { inherit pkgs deGithub; }) [
+    ./tiny-code-action
     ./markview
     ./direnv
     ./wich-key
@@ -41,16 +42,5 @@ let
   ];
 
   deGithub = import ../util/deGithub.nix { inherit pkgs lib; };
-  formatearDependenciasDeLazy = import ../util/formatearDependenciasDeLazy.nix;
 in
-map (
-  rutaDeComplemento:
-  #lua
-  let
-    complemento = import rutaDeComplemento { inherit pkgs deGithub; };
-    #lua
-  in
-  ''
-    (${complemento.config})("${complemento.paquete}", { ${formatearDependenciasDeLazy complemento.dependencias} })
-  ''
-) rutasDeComplementos
+complementos

@@ -5,18 +5,16 @@
     ref = "main";
     repo = "NotAShelf/direnv.nvim";
   };
-  dependencias = [ ];
+  dependenciasDeSistema = [ pkgs.direnv ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Direnv",
           event = { "BufReadPre", "BufNewFile" },
-          dependencies = dependencias,
           config = function ()
             require("direnv").setup({
               bin = "${pkgs.direnv}/bin/direnv",

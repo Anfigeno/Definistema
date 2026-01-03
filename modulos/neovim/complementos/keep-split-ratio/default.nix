@@ -5,18 +5,15 @@
     ref = "main";
     repo = "adlrwbr/keep-split-ratio.nvim";
   };
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Keep Split Ratio",
           event = "BufEnter",
-          dependencies = dependencias,
           opts = {},
         }
       end

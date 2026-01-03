@@ -1,18 +1,15 @@
 { pkgs, ... }:
 {
   paquete = pkgs.vimPlugins.mini-move;
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Mini Move",
           lazy = true,
-          dependencies = dependencias,
           config = function()
             require("mini.move").setup({
               mappings = {

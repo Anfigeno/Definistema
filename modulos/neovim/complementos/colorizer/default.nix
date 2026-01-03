@@ -1,13 +1,11 @@
 { pkgs, ... }:
 {
   paquete = pkgs.vimPlugins.nvim-colorizer-lua;
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Colorizer",

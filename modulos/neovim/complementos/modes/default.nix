@@ -4,18 +4,15 @@
     ref = "main";
     repo = "mvllow/modes.nvim";
   };
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Modes",
           event = { "BufReadPost", "BufNewFile" },
-          dependencies = dependencias,
           config = function()
             require("modes").setup({
               colors = require("mestizo.claves.integraciones.especial.modes"),

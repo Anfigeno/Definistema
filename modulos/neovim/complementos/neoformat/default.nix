@@ -1,17 +1,14 @@
 { pkgs, ... }: {
   paquete = pkgs.vimPlugins.neoformat;
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Neoformat",
           cmd = { "Neoformat" },
-          dependencies = dependencias,
           config = function()
             vim.g.neoformat_run_all_formatters = 1
 

@@ -6,7 +6,7 @@
     # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
+      ---@param dependencias { dir: string }[]
       ---@diagnostic disable-next-line: miss-name
       function(paquete, dependencias)
         return {

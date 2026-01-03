@@ -1,12 +1,16 @@
-{ pkgs, lib }:
+{
+  pkgs,
+  complementos,
+}:
 let
-  complementos = import ./complementos { inherit pkgs lib; };
+  formatearComplementosDeLazy = import ./util/formatearComplementosDeLazy.nix;
 in
 {
   plugin = pkgs.vimPlugins.lazy-nvim;
   type = "lua";
-  config = # lua
+  config =
+    # lua
     ''
-      require("lazy").setup({${lib.strings.join ",\n" complementos}})
+      require("lazy").setup(${formatearComplementosDeLazy complementos})
     '';
 }

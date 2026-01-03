@@ -1,17 +1,14 @@
 { pkgs, ... }: {
   paquete = pkgs.vimPlugins.hover-nvim;
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Hover",
           event = { "BufReadPost", "BufNewFile" },
-          dependencies = dependencias,
           config = function()
             require("hover").config({
               init = function()

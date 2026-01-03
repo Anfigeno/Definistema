@@ -1,17 +1,14 @@
 { pkgs, ... }: {
   paquete = pkgs.vimPlugins.rainbow-delimiters-nvim;
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Rainbow Delimiters",
           event = { "BufReadPost", "BufNewFile" },
-          dependencies = dependencias,
           config = function()
             local rainbow_delimiters = require("rainbow-delimiters")
 

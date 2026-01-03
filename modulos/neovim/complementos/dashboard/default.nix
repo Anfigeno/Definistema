@@ -1,18 +1,15 @@
 { pkgs, ... }:
 {
   paquete = pkgs.vimPlugins.dashboard-nvim;
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disable-next-line: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Dashboard",
           event = "VimEnter",
-          dependencies = dependencias,
           config = function()
             require("dashboard").setup({
               theme = "doom",

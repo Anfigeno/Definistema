@@ -1,17 +1,14 @@
 { pkgs, ... }:
 {
   paquete = pkgs.vimPlugins.mini-surround;
-  dependencias = [ ];
   config = # lua
     ''
       ---@param paquete string
-      ---@param dependencias string[]
       ---@diagnostic disabe-next-ine: miss-name
-      function(paquete, dependencias)
+      function(paquete)
         return {
           dir = paquete,
           name = "Mini Surround",
-          dependencies = dependencias,
           config = function()
             require("mini.surround").setup()
           end,
