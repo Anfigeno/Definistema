@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   paquete = pkgs.vimPlugins.bufferline-nvim;
-  dependencias = with pkgs.vimPlugins; [ nvim-web-devicons scope-nvim ];
+  dependencias = with pkgs.vimPlugins; [ scope-nvim ];
   config = # lua
     ''
       ---@param paquete string

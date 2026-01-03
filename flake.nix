@@ -25,5 +25,15 @@
           ];
         };
       }) maquinas);
+
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          nixfmt
+          nil
+          nixd
+          lua-language-server
+          stylua
+        ];
+      };
     };
 }

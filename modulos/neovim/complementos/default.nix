@@ -1,6 +1,7 @@
 { pkgs, lib }:
 let
   rutasDeComplementos = [
+    ./direnv
     ./wich-key
     ./lazydev
     ./keep-split-ratio

@@ -1,6 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, deGithub, ... }:
+{
   paquete = pkgs.vimPlugins.lualine-nvim;
-  dependencias = with pkgs.vimPlugins; [ nvim-web-devicons nvim-navic ];
+  dependencias = with pkgs.vimPlugins; [
+    mini-icons
+    nvim-navic
+    (import ../direnv { inherit pkgs deGithub; }).paquete
+  ];
   config = # lua
     ''
       ---@param paquete string
@@ -16,7 +21,7 @@
             local colores = require("mestizo.paleta")
 
             local function obtener_icono()
-              return require('nvim-web-devicons').get_icon_by_filetype(vim.bo.filetype, { default = true })
+              return require('mini.icons').get("filetype", vim.bo.filetype)
             end
 
             local winbar = {
@@ -28,7 +33,7 @@
                 },
               },
               lualine_z = {
-                obtener_icono(),
+                obtener_icono,
                 {
                   "filename",
                   file_status = false,
@@ -88,10 +93,13 @@
                   obtener_lsps_activos,
                 },
                 lualine_y = {
-                  obtener_icono(),
-                  { "bo:filetype", fmt = string.upper },
+                  function ()
+                    return require("direnv").statusline()
+                  end
                 },
                 lualine_z = {
+                  obtener_icono,
+                  { "bo:filetype", fmt = string.upper },
                   "progress",
                   "location",
                 },
