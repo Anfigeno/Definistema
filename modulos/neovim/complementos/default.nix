@@ -1,6 +1,9 @@
 { pkgs, lib }:
 let
   complementos = map (complemento: import complemento { inherit pkgs deGithub; }) [
+    ./rest
+    ./trouble
+    ./no-neck-pain
     ./tiny-code-action
     ./markview
     ./direnv
