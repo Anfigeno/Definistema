@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./bat
     ./dircolors
     ./delta
     ./fish
