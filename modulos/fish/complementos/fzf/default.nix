@@ -20,6 +20,6 @@
     in
     # fish
     ''
-      set -Ux FZF_DEFAULT_OPTS '${mestizo-nix.integraciones.fzf}'
+      set -Ux FZF_DEFAULT_OPTS '${mestizo-nix.integraciones.fzf} --preview-window=65%'
     '';
 }

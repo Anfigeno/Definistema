@@ -1,10 +1,11 @@
 { ... }:
 {
   imports = [
+    ./dircolors
     ./delta
     ./fish
     ./git
-    ./eza
+    ./lsd
     ./neovim
     ./zellij
     ./direnv

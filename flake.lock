@@ -22,11 +22,11 @@
     },
     "mestizo-nix": {
       "locked": {
-        "lastModified": 1767483177,
-        "narHash": "sha256-sUiGlnksI1AxDcqZpmDfTwJ7m5fxFHN5XlQ++G2DbKE=",
+        "lastModified": 1767552458,
+        "narHash": "sha256-0Bs9G48fiU3rP+FYGZQJCcObpbKgVka7pKm9pevQtM8=",
         "owner": "TemaMestizo",
         "repo": "MestizoNix",
-        "rev": "be58807eb3f0915ebdd4fe143f40714a936efe05",
+        "rev": "7d4cf64196beef3a6df802bd2015f976270672a6",
         "type": "github"
       },
       "original": {
