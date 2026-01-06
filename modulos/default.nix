@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./entornoDeDesarrollo ];
+  imports = [
+    ./entornoDeDesarrollo
+    ./entornoHyprland
+  ];
 }
