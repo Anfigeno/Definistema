@@ -17,16 +17,16 @@ lib.listToAttrs (
     (
       perfil:
       let
-        perfilAAplicar = if perfil ? anonima then perfilBaseAnonimo else perfilBase;
+        perfilAAplicar = if perfil.anonima then perfilBaseAnonimo else perfilBase;
       in
       {
         name = perfil.configuracion.name;
-        value = perfil.configuracion;
+        value = perfil.configuracion // perfilAAplicar;
       }
-      // perfilAAplicar
     )
     [
       {
+        anonima = false;
         configuracion = {
           name = "Productividad";
           id = 0;
@@ -34,6 +34,7 @@ lib.listToAttrs (
         };
       }
       {
+        anonima = false;
         configuracion = {
           name = "Defecto";
           id = 1;
