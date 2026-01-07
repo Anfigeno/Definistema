@@ -4,11 +4,20 @@
   configuracion = {
     home-manager.users.${usuario} = {
       wayland.windowManager.hyprland = {
-        systemd.enable = false;
+        systemd.variables = [ "-all" ];
         enable = true;
+        settings = {
+          "$mod" = "SUPER";
+          bind = import ./atajosDeTeclado.nix { inherit pkgs; };
+          bindm = import ./atajosDelMouse.nix;
+          input = import ./entrada.nix;
+        };
       };
 
-      home.packages = with pkgs; [ xdg-utils ];
+      home.packages = with pkgs; [
+        xdg-utils
+        kitty
+      ];
     };
 
     programs.hyprland = {

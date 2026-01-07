@@ -1,0 +1,3 @@
+{
+  kb_layout = "latam";
+}

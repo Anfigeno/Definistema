@@ -19,6 +19,11 @@ let
 
   subModulos = map (ruta: import ruta args) [
     ./hyprland
+    ./firefox
+    ./gtk
+    ./qt
+    ./kitty
+    ./fuentes
   ];
 in
 {

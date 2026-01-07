@@ -1,7 +1,14 @@
 { ... }:
 {
   entornoDeDesarrollo.activar = true;
-  entornoHyprland.hyprland.activar = true;
+  entornoHyprland = {
+    hyprland.activar = true;
+    firefox.activar = true;
+    gtk.activar = true;
+    qt.activar = true;
+    kitty.activar = true;
+    fuentes.activar = true;
+  };
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
