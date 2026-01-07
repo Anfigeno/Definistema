@@ -11,6 +11,13 @@ in
   config =
     # lua
     ''
-      require("lazy").setup(${formatearComplementosDeLazy complementos})
+      require("lazy").setup({
+        spec = ${formatearComplementosDeLazy complementos},
+        checker = { enabled = false },
+        pkgs = { enabled = false },
+        rocks = { enabled = false },
+        install = { missing = false },
+        change_detection = { enabled = false }
+      })
     '';
 }

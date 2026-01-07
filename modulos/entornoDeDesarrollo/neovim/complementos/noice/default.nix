@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   paquete = pkgs.vimPlugins.noice-nvim;
   dependencias = with pkgs.vimPlugins; [ nui-nvim ];
   config = # lua
