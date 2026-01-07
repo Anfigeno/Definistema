@@ -8,6 +8,7 @@
     qt.activar = true;
     kitty.activar = true;
     fuentes.activar = true;
+    xdg.activar = true;
   };
 
   boot.loader.grub.enable = true;
