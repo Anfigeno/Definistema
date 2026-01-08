@@ -17,7 +17,7 @@ let
       ;
   };
 
-  subModulos = map (ruta: import ruta args) [
+  configuraciones = map (ruta: import ruta args) [
     ./swww
     ./pipewire
     ./hyprland
@@ -35,5 +35,5 @@ in
     activar = lib.mkEnableOption "Activa el módulo de entornoHyprland";
   };
 
-  config = lib.mkIf config.entornoHyprland.activar (lib.mkMerge subModulos);
+  config = lib.mkIf config.entornoHyprland.activar (lib.mkMerge configuraciones);
 }

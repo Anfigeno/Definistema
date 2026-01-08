@@ -1,20 +1,40 @@
-{ lib, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  usuario,
+  ...
+}:
+let
+  args = {
+    inherit
+      lib
+      config
+      pkgs
+      inputs
+      usuario
+      ;
+  };
+
+  configuraciones = map (ruta: import ruta args) [
+    ./cliphist
+    ./yazi
+    ./bat
+    ./git
+    ./lsd
+    ./fish
+    ./delta
+    ./direnv
+    ./neovim
+    ./zellij
+    ./dircolors
+  ];
+in
 {
   options.entornoDeDesarrollo = {
     activar = lib.mkEnableOption "Activa el módulo de entorno de desarrollo";
   };
 
-  imports = [
-    ./cliphist
-    ./yazi
-    ./bat
-    ./dircolors
-    ./delta
-    ./fish
-    ./git
-    ./lsd
-    ./neovim
-    ./zellij
-    ./direnv
-  ];
+  config = lib.mkIf config.entornoDeDesarrollo.activar (lib.mkMerge configuraciones);
 }
