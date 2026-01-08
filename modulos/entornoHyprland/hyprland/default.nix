@@ -1,4 +1,9 @@
-{ usuario, pkgs, ... }:
+{
+  usuario,
+  pkgs,
+  lib,
+  ...
+}:
 {
   nombre = "hyprland";
   configuracion = {
@@ -8,7 +13,7 @@
         enable = true;
         settings = {
           "$mod" = "SUPER";
-          bind = import ./atajosDeTeclado.nix { inherit pkgs; };
+          bind = import ./atajosDeTeclado { inherit pkgs lib; };
           bindm = import ./atajosDelMouse.nix;
           input = import ./entrada.nix;
         };
