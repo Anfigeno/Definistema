@@ -2,6 +2,7 @@
   usuario,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
@@ -9,13 +10,16 @@
   configuracion = {
     home-manager.users.${usuario} = {
       wayland.windowManager.hyprland = {
-        systemd.variables = [ "-all" ];
+        systemd.variables = [ "--all" ];
         enable = true;
-        settings = {
+        settings = lib.recursiveUpdate inputs.mestizo-nix.integraciones.hyprland {
           "$mod" = "SUPER";
           bind = import ./atajosDeTeclado { inherit pkgs lib; };
           bindm = import ./atajosDelMouse.nix;
           input = import ./entrada.nix;
+          decoration = import ./decoracion.nix;
+          general = import ./general.nix;
+          group = import ./grupo.nix;
         };
       };
 

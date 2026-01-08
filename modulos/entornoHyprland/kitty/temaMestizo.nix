@@ -19,8 +19,8 @@ with mestizo;
   url_color = tope_2;
 
   # Colores de bordes de ventana de Kitty
-  active_border_color = tope_3;
-  inactive_border_color = base3;
+  active_border_color = tope_2;
+  inactive_border_color = tope_3;
 
   # Colores de barra de título del SO
   wayland_titlebar_color = base;
