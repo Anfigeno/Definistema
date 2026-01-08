@@ -18,6 +18,7 @@ let
   };
 
   subModulos = map (ruta: import ruta args) [
+    ./pipewire
     ./hyprland
     ./firefox
     ./gtk
