@@ -5,6 +5,7 @@
   };
 
   imports = [
+    ./cliphist
     ./yazi
     ./bat
     ./dircolors
