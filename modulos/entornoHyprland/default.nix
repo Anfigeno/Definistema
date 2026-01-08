@@ -18,6 +18,7 @@ let
   };
 
   subModulos = map (ruta: import ruta args) [
+    ./swww
     ./pipewire
     ./hyprland
     ./firefox
@@ -26,6 +27,7 @@ let
     ./kitty
     ./fuentes
     ./xdg
+    ./configuracionAdicional
   ];
 in
 {

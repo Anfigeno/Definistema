@@ -22,6 +22,21 @@
         "type": "gitlab"
       }
     },
+    "fondos-de-pantalla": {
+      "locked": {
+        "lastModified": 1767876357,
+        "narHash": "sha256-lVHWNbYiSXPlzcpQYr+/2RRCXwUphDWpp82nyRtNSiA=",
+        "owner": "Anfigeno",
+        "repo": "Fondos-de-pantalla",
+        "rev": "000025e0ea274f9f2a7caf311c79d00a2e29c131",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Anfigeno",
+        "repo": "Fondos-de-pantalla",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -82,6 +97,7 @@
     "root": {
       "inputs": {
         "firefox-addons": "firefox-addons",
+        "fondos-de-pantalla": "fondos-de-pantalla",
         "home-manager": "home-manager",
         "mestizo-nix": "mestizo-nix",
         "nixpkgs": "nixpkgs"

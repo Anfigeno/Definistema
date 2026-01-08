@@ -18,6 +18,8 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fondos-de-pantalla.url = "github:Anfigeno/Fondos-de-pantalla";
   };
 
   outputs =
