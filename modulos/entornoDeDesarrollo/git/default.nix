@@ -14,13 +14,16 @@ in
   };
 
   config = lib.mkIf activar {
-    home-manager.users.${usuario}.programs.git = {
-      enable = true;
-      settings = {
-        init.defaultBranch = "main";
-        user.name = "anfigeno";
-        user.email = "dolorcriticodevastador@proton.me";
+    home-manager.users.${usuario} = {
+      programs.git = {
+        enable = true;
+        settings = {
+          init.defaultBranch = "main";
+          user.name = "anfigeno";
+          user.email = "dolorcriticodevastador@proton.me";
+        };
       };
+      programs.gh.enable = true;
     };
   };
 }

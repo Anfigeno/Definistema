@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   paquete = {
     name = "tide";
@@ -9,13 +9,18 @@
       sha256 = "sha256-dzYEYC1bYP0rWpmz0fmBFwskxWYuKBMTssMELXXz5H0=";
     };
   };
-  configuracion = # fish
+  configuracion =
+    let
+      f = cadena: builtins.substring 1 (-1) cadena;
+    in
+    with inputs.mestizo-nix.paleta; # fish
     ''
-      set -g tide_os_color brwhite
-      set -g tide_os_bg_color red
-      set -g tide_pwd_bg_color cyan
-      set -g tide_pwd_color_anchors black
-      set -g tide_pwd_color_dirs brblack
-      set -g tide_pwd_color_truncated_dirs brblack
+      set -g tide_os_color ${f tope2}
+      set -g tide_os_bg_color ${f rojo}
+      set -g tide_pwd_bg_color ${f cian} 
+      set -g tide_pwd_color_anchors ${f base}
+      set -g tide_pwd_color_dirs ${f base1}
+      set -g tide_pwd_color_truncated_dirs ${f base2}
+      set -g tide_prompt_color_frame_and_connection ${f base3}
     '';
 }
