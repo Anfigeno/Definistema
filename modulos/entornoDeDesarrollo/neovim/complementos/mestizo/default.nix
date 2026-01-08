@@ -1,6 +1,6 @@
 { deGithub, ... }: {
   paquete = deGithub {
-    rev = "7b131e9e792dc2c98ab43c76463b241464fc5cdd";
+    rev = "c62ea30a4cab39b8eb34973f297feb35bbac664c";
     ref = "main";
     repo = "anfigeno/mestizo.nvim";
   };
