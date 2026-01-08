@@ -28,22 +28,9 @@ let
   ];
 in
 {
-  options.entornoHyprland = lib.listToAttrs (
-    map (subModulo: {
-      name = subModulo.nombre;
-      value = {
-        activar = lib.mkOption {
-          type = lib.types.bool;
-          description = "Activa el módulo de ${subModulo.nombre}";
-          default = false;
-        };
-      };
-    }) subModulos
-  );
+  options.entornoHyprland = {
+    activar = lib.mkEnableOption "Activa el módulo de entornoHyprland";
+  };
 
-  config = lib.mkMerge (
-    map (
-      subModulo: lib.mkIf config.entornoHyprland.${subModulo.nombre}.activar subModulo.configuracion
-    ) subModulos
-  );
+  config = lib.mkIf config.entornoHyprland.activar (lib.mkMerge subModulos);
 }
