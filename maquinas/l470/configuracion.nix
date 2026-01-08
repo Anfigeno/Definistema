@@ -1,5 +1,11 @@
-{ ... }:
+{ usuario, pkgs, ... }:
 {
+  home-manager.users.${usuario} = {
+    programs.discord.enable = true;
+  };
+
+  programs.steam.enable = true;
+
   entornoDeDesarrollo.activar = true;
   entornoHyprland.activar = true;
 
