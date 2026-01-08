@@ -5,6 +5,7 @@
   };
 
   imports = [
+    ./yazi
     ./bat
     ./dircolors
     ./delta
