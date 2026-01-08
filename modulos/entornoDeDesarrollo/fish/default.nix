@@ -26,9 +26,14 @@ in
         programs.fish = {
           enable = true;
           plugins = map (complemento: complemento.paquete) complementos;
-          shellInit = builtins.concatStringsSep "\n" (
-            map (complemento: complemento.configuracion or "") complementos
-          );
+          shellInit =
+            let
+              configuracionDeComplementos = builtins.concatStringsSep "\n" (
+                map (complemento: complemento.configuracion or "") complementos
+              );
+              mestizoFish = inputs.mestizo-nix.integraciones.fish;
+            in
+            configuracionDeComplementos + mestizoFish;
         };
       };
   };
