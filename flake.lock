@@ -49,11 +49,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767842901,
-        "narHash": "sha256-d2c7/MIIObwhWfpcgVkV70LXJJ5nK7jrmKUxUC6l8H0=",
+        "lastModified": 1767846304,
+        "narHash": "sha256-m+2kDKDd46/B0e8BXGBtHcYQ7u69l2jmDUXRXjcrrlo=",
         "owner": "TemaMestizo",
         "repo": "MestizoNix",
-        "rev": "879999dc69204599d040376c97c7839260fa4d66",
+        "rev": "a7c166149f0c1e9fc76052687061d9125373a61d",
         "type": "github"
       },
       "original": {
