@@ -21,7 +21,6 @@ let
     ./swww
     ./pipewire
     ./hyprland
-    ./gtk
     ./qt
     ./kitty
     ./fuentes

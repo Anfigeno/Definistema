@@ -5,5 +5,6 @@
     ./entornoHyprland
     ./firefox
     ./xdg
+    ./gtk
   ];
 }
