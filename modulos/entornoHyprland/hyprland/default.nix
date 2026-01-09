@@ -10,7 +10,11 @@ let
   cfg = config.definistema;
 in
 {
-  config = lib.mkIf cfg.entornoHyprland.activar {
+  options.definistema.entornoHyprland.hyprland = {
+    activar = lib.mkEnableOption "Activa el módulo de hyprland";
+  };
+
+  config = lib.mkIf cfg.entornoHyprland.hyprland.activar {
     home-manager.users.${usuario} = {
       wayland.windowManager.hyprland = {
         systemd.variables = [ "--all" ];
@@ -23,6 +27,7 @@ in
           decoration = import ./decoracion.nix;
           general = import ./general.nix;
           group = import ./grupo.nix;
+          windowrule = import ./reglasDeVentanas.nix { inherit config; };
         };
       };
 

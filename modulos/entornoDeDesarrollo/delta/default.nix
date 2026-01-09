@@ -1,16 +1,25 @@
 {
   usuario,
-  pkgs,
   inputs,
+  config,
+  lib,
   ...
 }:
 
+let
+  cfg = config.definistema;
+in
 {
-  home-manager.users.${usuario} = {
-    programs.fish.shellInit = # sh
-      ''set -Ux fzf_diff_highlighter ${pkgs.delta}/bin/delta --paging=never'';
+  imports = [
+    ./integraciones
+  ];
 
-    programs.delta = {
+  options.definistema.entornoDeDesarrollo.delta = {
+    activar = lib.mkEnableOption "Activa el módulo de delta";
+  };
+
+  config = lib.mkIf cfg.entornoDeDesarrollo.delta.activar {
+    home-manager.users.${usuario}.programs.delta = {
       enable = true;
       enableGitIntegration = true;
       options =

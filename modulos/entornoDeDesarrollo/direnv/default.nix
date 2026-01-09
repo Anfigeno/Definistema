@@ -1,10 +1,21 @@
 {
   usuario,
+  lib,
+  config,
   ...
 }:
+let
+  cfg = config.definistema;
+in
 {
-  home-manager.users.${usuario}.programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
+  options.definistema.entornoDeDesarrollo.direnv = {
+    activar = lib.mkEnableOption "Activa el módulo de direnv";
+  };
+
+  config = lib.mkIf cfg.entornoDeDesarrollo.direnv.activar {
+    home-manager.users.${usuario}.programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
   };
 }

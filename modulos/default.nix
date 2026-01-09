@@ -1,9 +1,10 @@
 { ... }:
 {
   imports = [
-    ./qt
     ./entornoDeDesarrollo
     ./entornoHyprland
+    ./swww
+    ./qt
     ./firefox
     ./xdg
     ./gtk

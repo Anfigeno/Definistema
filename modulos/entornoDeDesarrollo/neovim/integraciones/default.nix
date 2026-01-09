@@ -1,9 +1,7 @@
 { ... }:
 {
   imports = [
-    ./fuentes
-    ./hyprland
-    ./swww
     ./xdg
+    ./hyprland
   ];
 }

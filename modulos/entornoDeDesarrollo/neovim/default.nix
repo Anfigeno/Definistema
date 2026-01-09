@@ -2,33 +2,40 @@
   usuario,
   pkgs,
   lib,
+  config,
   ...
 }:
 
+let
+  cfg = config.definistema;
+in
+
 {
+  imports = [
+    ./integraciones
+  ];
 
-  home-manager.users.${usuario} =
-    { ... }:
-    {
-      imports = [
-        ./integraciones/xdg.nix
-        ./integraciones/hyprland.nix
-      ];
+  options.definistema.entornoDeDesarrollo.neovim = {
+    activar = lib.mkEnableOption "Activa el módulo de neovim";
+  };
 
-      programs.neovim =
-        let
-          complementos = import ./complementos { inherit pkgs lib; };
+  config = lib.mkIf cfg.entornoDeDesarrollo.neovim.activar {
+    home-manager.users.${usuario}.programs.neovim =
+      let
+        complementos = import ./complementos { inherit pkgs lib; };
 
-          dependenciasDeSistemaDeComplementos = lib.lists.flatten (
-            map (complemento: complemento.dependenciasDeSistema or [ ]) complementos
-          );
-        in
-        {
-          enable = true;
-          defaultEditor = true;
-          extraLuaConfig = import ./init.lua.nix { inherit pkgs; };
-          extraPackages = dependenciasDeSistemaDeComplementos;
-          plugins = [ (import ./lazy.nix { inherit pkgs complementos; }) ];
-        };
-    };
+        dependenciasDeSistemaDeComplementos = lib.lists.flatten (
+          map (complemento: complemento.dependenciasDeSistema or [ ]) complementos
+        );
+      in
+
+      {
+
+        enable = true;
+        defaultEditor = true;
+        extraLuaConfig = import ./init.lua.nix { inherit pkgs; };
+        extraPackages = dependenciasDeSistemaDeComplementos;
+        plugins = [ (import ./lazy.nix { inherit pkgs complementos; }) ];
+      };
+  };
 }

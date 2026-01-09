@@ -1,40 +1,45 @@
 {
   lib,
   config,
-  pkgs,
-  inputs,
-  usuario,
   ...
 }:
 let
-  args = {
-    inherit
-      lib
-      config
-      pkgs
-      inputs
-      usuario
-      ;
-  };
-
-  configuraciones = map (ruta: import ruta args) [
-    ./cliphist
-    ./yazi
-    ./bat
-    ./git
-    ./lsd
-    ./fish
-    ./delta
-    ./direnv
-    ./neovim
-    ./zellij
-    ./dircolors
-  ];
+  cfg = config.definistema;
 in
 {
+  imports = [
+    ./bat
+    ./cliphist
+    ./delta
+    ./dircolors
+    ./direnv
+    ./fish
+    ./gh
+    ./git
+    ./lsd
+    ./neovim
+    ./yazi
+    ./zellij
+  ];
+
   options.definistema.entornoDeDesarrollo = {
     activar = lib.mkEnableOption "Activa el módulo de entorno de desarrollo";
   };
 
-  config = lib.mkIf config.definistema.entornoDeDesarrollo.activar (lib.mkMerge configuraciones);
+  config = lib.mkIf cfg.entornoDeDesarrollo.activar {
+    definistema.entornoDeDesarrollo = {
+      bat.activar = true;
+      cliphist.activar = true;
+      delta.activar = true;
+      dircolors.activar = true;
+      direnv.activar = true;
+      fish.activar = true;
+      gh.activar = true;
+      git.activar = true;
+      lsd.activar = true;
+      neovim.activar = true;
+      yazi.activar = true;
+      zellij.activar = true;
+    };
+  };
 }

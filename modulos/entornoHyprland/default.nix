@@ -10,7 +10,8 @@ let
 in
 {
   imports = [
-    ./integraciones
+    ./hyprland
+    ./fuentes
   ];
 
   options.definistema.entornoHyprland = {
@@ -23,7 +24,12 @@ in
       gtk.activar = true;
       qt.activar = true;
       pipewire.activar = true;
-      kitty.activar = true;
+      swww.activar = true;
+
+      entornoHyprland = {
+        hyprland.activar = true;
+        fuentes.activar = true;
+      };
     };
 
     home-manager.users.${usuario} = {

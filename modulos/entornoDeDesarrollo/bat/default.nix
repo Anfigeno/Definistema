@@ -1,11 +1,24 @@
 {
   usuario,
   pkgs,
+  config,
+  lib,
   ...
 }:
+let
+  cfg = config.definistema;
+in
 {
-  home-manager.users.${usuario} = {
-    programs.bat = {
+  imports = [
+    ./integraciones
+  ];
+
+  options.definistema.entornoDeDesarrollo.bat = {
+    activar = lib.mkEnableOption "Activa el módulo de bat";
+  };
+
+  config = lib.mkIf cfg.entornoDeDesarrollo.bat.activar {
+    home-manager.users.${usuario}.programs.bat = {
       enable = true;
       themes.mestizo = {
         src = pkgs.fetchFromGitHub {
@@ -17,10 +30,5 @@
         file = "mestizo.tmTheme";
       };
     };
-
-    programs.fish.shellInit = # fish
-      ''
-        set -Ux BAT_THEME "mestizo"
-      '';
   };
 }

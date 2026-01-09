@@ -2,6 +2,7 @@
   usuario,
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -28,6 +29,30 @@ in
         videos = "Videos";
         templates = "Plantillas";
         publicShare = "Público";
+      };
+
+      portal = {
+        extraPortals = with pkgs; [
+          (
+            if
+              cfg.entornoHyprland.hyprland.activar # #
+            then
+              xdg-desktop-portal-hyprland
+            else
+              null
+          )
+        ];
+
+        config.common.default = [
+          (
+            if
+              cfg.entornoHyprland.hyprland.activar # #
+            then
+              "hyrpland"
+            else
+              "hyprland"
+          )
+        ];
       };
     };
   };

@@ -9,7 +9,11 @@ let
   cfg = config.definistema;
 in
 {
-  config = lib.mkIf cfg.entornoHyprland.activar {
+  options.definistema.entornoHyprland.fuentes = {
+    activar = lib.mkEnableOption "Activa el módulo de fuentes";
+  };
+
+  config = lib.mkIf cfg.entornoHyprland.fuentes.activar {
     home-manager.users.${usuario}.home.packages = with pkgs; [
       nerd-fonts.iosevka
       iosevka
