@@ -2,32 +2,37 @@
   lib,
   config,
   pkgs,
-  inputs,
   usuario,
   ...
 }:
 let
-  args = {
-    inherit
-      lib
-      config
-      pkgs
-      inputs
-      usuario
-      ;
-  };
-
-  configuraciones = map (ruta: import ruta args) [
-    ./swww
-    ./hyprland
-    ./fuentes
-    ./configuracionAdicional
-  ];
+  cfg = config.definistema;
 in
 {
+  imports = [
+    ./integraciones
+  ];
+
   options.definistema.entornoHyprland = {
     activar = lib.mkEnableOption "Activa el módulo de entorno hyprland";
   };
 
-  config = lib.mkIf config.definistema.entornoHyprland.activar (lib.mkMerge configuraciones);
+  config = lib.mkIf cfg.entornoHyprland.activar {
+    definistema = {
+      xdg.activar = true;
+      gtk.activar = true;
+      qt.activar = true;
+      pipewire.activar = true;
+      kitty.activar = true;
+    };
+
+    home-manager.users.${usuario} = {
+      home.packages = with pkgs; [
+        nautilus
+        feh
+        mpv
+        amberol
+      ];
+    };
+  };
 }
