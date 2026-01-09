@@ -21,7 +21,6 @@ let
     ./swww
     ./pipewire
     ./hyprland
-    ./firefox
     ./gtk
     ./qt
     ./kitty

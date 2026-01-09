@@ -1,4 +1,4 @@
-{ usuario, pkgs, ... }:
+{ usuario, ... }:
 {
   home-manager.users.${usuario} = {
     programs.discord.enable = true;
@@ -8,6 +8,7 @@
 
   definistema.entornoDeDesarrollo.activar = true;
   definistema.entornoHyprland.activar = true;
+  definistema.firefox.activar = true;
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";

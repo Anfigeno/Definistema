@@ -3,5 +3,6 @@
   imports = [
     ./entornoDeDesarrollo
     ./entornoHyprland
+    ./firefox
   ];
 }
