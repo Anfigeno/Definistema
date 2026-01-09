@@ -7,5 +7,6 @@
     ./firefox
     ./xdg
     ./gtk
+    ./pipewire
   ];
 }

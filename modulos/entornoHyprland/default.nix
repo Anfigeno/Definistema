@@ -19,7 +19,6 @@ let
 
   configuraciones = map (ruta: import ruta args) [
     ./swww
-    ./pipewire
     ./hyprland
     ./kitty
     ./fuentes
