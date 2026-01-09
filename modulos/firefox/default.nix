@@ -10,6 +10,9 @@ let
   cfg = config.definistema;
 in
 {
+  imports = [
+    ./integraciones
+  ];
 
   options.definistema.firefox = {
     activar = lib.mkEnableOption "Activa el módulo de firefox";

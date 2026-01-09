@@ -25,7 +25,6 @@ let
     ./qt
     ./kitty
     ./fuentes
-    ./xdg
     ./configuracionAdicional
   ];
 in

@@ -4,5 +4,6 @@
     ./entornoDeDesarrollo
     ./entornoHyprland
     ./firefox
+    ./xdg
   ];
 }
