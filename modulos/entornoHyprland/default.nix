@@ -21,7 +21,6 @@ let
     ./swww
     ./pipewire
     ./hyprland
-    ./qt
     ./kitty
     ./fuentes
     ./configuracionAdicional

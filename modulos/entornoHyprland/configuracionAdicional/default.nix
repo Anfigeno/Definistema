@@ -1,7 +1,10 @@
 { usuario, pkgs, ... }:
 {
-  definistema.xdg.activar = true;
-  definistema.gtk.activar = true;
+  definistema = {
+    xdg.activar = true;
+    gtk.activar = true;
+    qt.activar = true;
+  };
 
   home-manager.users.${usuario} = {
     home.packages = with pkgs; [

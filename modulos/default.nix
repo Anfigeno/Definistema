@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./qt
     ./entornoDeDesarrollo
     ./entornoHyprland
     ./firefox
