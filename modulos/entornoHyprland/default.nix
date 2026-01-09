@@ -25,10 +25,10 @@ in
       qt.activar = true;
       pipewire.activar = true;
       swww.activar = true;
+      fontconfig.activar = true;
 
       entornoHyprland = {
         hyprland.activar = true;
-        fuentes.activar = true;
       };
     };
 

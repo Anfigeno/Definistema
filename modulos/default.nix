@@ -3,6 +3,7 @@
   imports = [
     ./entornoDeDesarrollo
     ./entornoHyprland
+    ./fontconfig
     ./swww
     ./qt
     ./firefox
