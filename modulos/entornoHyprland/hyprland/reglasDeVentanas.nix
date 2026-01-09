@@ -1,8 +1,19 @@
 { config }:
 let
   cfg = config.definistema;
+
+  ventanasTransparentes = [
+    {
+      clase = "kitty";
+      condicion = cfg.kitty.activar;
+    }
+    {
+      clase = "Neovim";
+      condicion = cfg.entornoDeDesarrollo.neovim.activar;
+    }
+  ];
 in
-[
-  (if cfg.kitty.activar then "float, class:kitty" else null)
-  (if cfg.entornoDeDesarrollo.neovim.activar then "float, class:Neovim" else null)
-]
+[ ]
+++ (map (
+  ventana: if ventana.condicion then "opacity 0.9, class:${ventana.clase}" else null
+) ventanasTransparentes)
