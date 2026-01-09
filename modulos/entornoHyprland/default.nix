@@ -20,7 +20,6 @@ let
   configuraciones = map (ruta: import ruta args) [
     ./swww
     ./hyprland
-    ./kitty
     ./fuentes
     ./configuracionAdicional
   ];

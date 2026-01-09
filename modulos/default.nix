@@ -8,5 +8,6 @@
     ./xdg
     ./gtk
     ./pipewire
+    ./kitty
   ];
 }

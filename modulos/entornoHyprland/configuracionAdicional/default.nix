@@ -5,6 +5,7 @@
     gtk.activar = true;
     qt.activar = true;
     pipewire.activar = true;
+    kitty.activar = true;
   };
 
   home-manager.users.${usuario} = {
