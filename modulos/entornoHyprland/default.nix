@@ -11,7 +11,6 @@ in
 {
   imports = [
     ./hyprland
-    ./fuentes
   ];
 
   options.definistema.entornoHyprland = {

@@ -11,5 +11,9 @@
     ./gtk
     ./pipewire
     ./kitty
+    ./discord
+    ./virtualbox
+    ./steam
+    ./openssh
   ];
 }
