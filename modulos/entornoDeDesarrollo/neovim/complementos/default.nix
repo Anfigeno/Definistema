@@ -1,6 +1,7 @@
 { pkgs, lib }:
 let
-  complementos = map (complemento: import complemento { inherit pkgs deGithub; }) [
+  complementos = map (ruta: import ruta { inherit pkgs deGithub; }) [
+    ./supermaven
     ./rest
     ./trouble
     ./no-neck-pain
