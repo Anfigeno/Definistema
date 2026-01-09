@@ -31,9 +31,9 @@ let
   ];
 in
 {
-  options.entornoHyprland = {
-    activar = lib.mkEnableOption "Activa el módulo de entornoHyprland";
+  options.definistema.entornoHyprland = {
+    activar = lib.mkEnableOption "Activa el módulo de entorno hyprland";
   };
 
-  config = lib.mkIf config.entornoHyprland.activar (lib.mkMerge configuraciones);
+  config = lib.mkIf config.definistema.entornoHyprland.activar (lib.mkMerge configuraciones);
 }

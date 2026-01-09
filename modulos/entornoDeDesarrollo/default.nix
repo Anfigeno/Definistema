@@ -32,9 +32,9 @@ let
   ];
 in
 {
-  options.entornoDeDesarrollo = {
+  options.definistema.entornoDeDesarrollo = {
     activar = lib.mkEnableOption "Activa el módulo de entorno de desarrollo";
   };
 
-  config = lib.mkIf config.entornoDeDesarrollo.activar (lib.mkMerge configuraciones);
+  config = lib.mkIf config.definistema.entornoDeDesarrollo.activar (lib.mkMerge configuraciones);
 }

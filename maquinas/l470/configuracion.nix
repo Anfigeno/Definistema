@@ -6,8 +6,8 @@
 
   programs.steam.enable = true;
 
-  entornoDeDesarrollo.activar = true;
-  entornoHyprland.activar = true;
+  definistema.entornoDeDesarrollo.activar = true;
+  definistema.entornoHyprland.activar = true;
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
