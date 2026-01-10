@@ -27,6 +27,8 @@ in
         dependenciasDeSistemaDeComplementos = lib.lists.flatten (
           map (complemento: complemento.dependenciasDeSistema or [ ]) complementos
         );
+
+        paquetesExtra = import ./paquetesExtra.nix { inherit pkgs; };
       in
 
       {
@@ -34,7 +36,7 @@ in
         enable = true;
         defaultEditor = true;
         extraLuaConfig = import ./init.lua.nix { inherit pkgs; };
-        extraPackages = dependenciasDeSistemaDeComplementos;
+        extraPackages = dependenciasDeSistemaDeComplementos ++ paquetesExtra;
         plugins = [ (import ./lazy.nix { inherit pkgs complementos; }) ];
       };
   };
