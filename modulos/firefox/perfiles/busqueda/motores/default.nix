@@ -5,6 +5,7 @@ let
     ./nixosSearch
     ./googleAi
     ./google
+    ./youtube
   ];
 
   reconfiguraciones = map (
