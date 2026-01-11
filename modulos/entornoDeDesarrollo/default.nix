@@ -20,6 +20,7 @@ in
     ./neovim
     ./yazi
     ./zellij
+    ./ssh
   ];
 
   options.definistema.entornoDeDesarrollo = {
@@ -40,6 +41,7 @@ in
       neovim.activar = true;
       yazi.activar = true;
       zellij.activar = true;
+      ssh.activar = true;
     };
   };
 }

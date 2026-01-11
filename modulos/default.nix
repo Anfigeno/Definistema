@@ -14,6 +14,5 @@
     ./discord
     ./virtualbox
     ./steam
-    ./openssh
   ];
 }

@@ -9,7 +9,6 @@
     virtualbox.activar = true;
     discord.activar = true;
     steam.activar = true;
-    openssh.activar = true;
   };
 
   boot.loader.grub.enable = true;
