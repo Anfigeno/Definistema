@@ -2,6 +2,7 @@
   usuario,
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -13,9 +14,15 @@ in
   };
 
   config = lib.mkIf cfg.entornoDeDesarrollo.cliphist.activar {
-    home-manager.users.${usuario}.services.cliphist = {
-      enable = true;
-      allowImages = true;
+    home-manager.users.${usuario} = {
+      services.cliphist = {
+        enable = true;
+        allowImages = true;
+      };
+
+      home.packages = with pkgs; [
+        wl-clipboard
+      ];
     };
   };
 }
