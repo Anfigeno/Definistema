@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   definistema = {
     entornoDeDesarrollo.activar = true;
@@ -9,6 +9,10 @@
     virtualbox.activar = true;
     discord.activar = true;
     steam.activar = true;
+
+    paquetes = with pkgs; [
+      prismlauncher
+    ];
   };
 
   boot.loader.grub.enable = true;

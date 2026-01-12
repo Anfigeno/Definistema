@@ -3,6 +3,7 @@
   imports = [
     ./entornoDeDesarrollo
     ./entornoHyprland
+    ./paquetes
     ./fontconfig
     ./swww
     ./qt

@@ -12,7 +12,7 @@ let
     ./lazydev
     ./keep-split-ratio
     ./ts-autotag
-    ./smear-cursor
+    # ./smear-cursor
     ./tabout
     ./todo-comments
     ./inc-rename

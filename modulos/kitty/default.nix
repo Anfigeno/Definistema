@@ -54,6 +54,9 @@ in
           map = ''
             ctrl+shift+t new_tab_with_cwd
             map ctrl+shift+enter launch --cwd=current'';
+
+          cursor_trail = 1;
+          cursor_trail_decay = "0.1 0.4";
         };
       };
     };
