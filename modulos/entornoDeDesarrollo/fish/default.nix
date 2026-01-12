@@ -18,18 +18,17 @@ in
     home-manager.users.${usuario} =
       let
         complementos = import ./complementos { inherit pkgs inputs; };
+        conComplementos = clave: respaldo: map (c: c.${clave} or respaldo) complementos;
       in
       {
-        home.packages = lib.lists.flatten (map (complemento: complemento.dependencias or [ ]) complementos);
+        home.packages = lib.lists.flatten (conComplementos "dependencias" [ ]);
 
         programs.fish = {
           enable = true;
-          plugins = map (complemento: complemento.paquete) complementos;
+          plugins = conComplementos "paquete" "";
           shellInit =
             let
-              configuracionDeComplementos = builtins.concatStringsSep "\n" (
-                map (complemento: complemento.configuracion or "") complementos
-              );
+              configuracionDeComplementos = builtins.concatStringsSep "\n" (conComplementos "configuracion" "");
               mestizoFish = inputs.mestizo-nix.integraciones.fish;
             in
             configuracionDeComplementos + mestizoFish;
