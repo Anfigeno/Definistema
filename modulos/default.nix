@@ -15,5 +15,6 @@
     ./discord
     ./virtualbox
     ./steam
+    ./obs
   ];
 }
