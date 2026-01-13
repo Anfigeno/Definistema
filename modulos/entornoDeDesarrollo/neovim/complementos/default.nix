@@ -1,6 +1,7 @@
 { pkgs, lib }:
 let
   complementos = map (ruta: import ruta { inherit pkgs deGithub; }) [
+    ./wakatime
     ./image
     ./supermaven
     ./rest
