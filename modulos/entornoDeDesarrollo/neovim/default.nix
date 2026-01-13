@@ -23,10 +23,10 @@ in
     home-manager.users.${usuario}.programs.neovim =
       let
         complementos = import ./complementos { inherit pkgs lib; };
+        conComplementos = clave: respaldo: map (complemento: complemento.${clave} or respaldo) complementos;
 
-        dependenciasDeSistemaDeComplementos = lib.lists.flatten (
-          map (complemento: complemento.dependenciasDeSistema or [ ]) complementos
-        );
+        dependenciasDeSistema = lib.lists.flatten (conComplementos "dependenciasDeSistema" [ ]);
+        dependenciasDeLua = lib.lists.flatten (conComplementos "dependenciasDeLua" [ ]);
 
         paquetesExtra = import ./paquetesExtra.nix { inherit pkgs; };
       in
@@ -36,7 +36,8 @@ in
         enable = true;
         defaultEditor = true;
         extraLuaConfig = import ./init.lua.nix { inherit pkgs; };
-        extraPackages = dependenciasDeSistemaDeComplementos ++ paquetesExtra;
+        extraPackages = dependenciasDeSistema ++ paquetesExtra;
+        extraLuaPackages = ps: map (nombre: ps.${nombre}) dependenciasDeLua;
         plugins = [ (import ./lazy.nix { inherit pkgs complementos; }) ];
       };
   };
