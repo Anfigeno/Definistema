@@ -16,7 +16,7 @@
         return {
           dir = paquete,
           name = "Image",
-          event = "VeryLazy",
+          ft = "markdown",
           opts = {
             backend = "kitty",
             integrations = {

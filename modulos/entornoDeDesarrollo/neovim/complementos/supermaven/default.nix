@@ -9,7 +9,7 @@
         return {
           dir = paquete,
           name = "Supermaven",
-          lazy = false,
+          event = "InsertEnter",
           config = function()
             require("supermaven-nvim").setup({
               keymaps = {
