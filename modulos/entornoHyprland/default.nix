@@ -35,8 +35,8 @@ in
       home.packages = with pkgs; [
         nautilus
         feh
-        mpv
         amberol
+        totem
       ];
     };
   };
