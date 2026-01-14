@@ -22,7 +22,7 @@
         return {
           dir = paquete,
           name = "CMP",
-          event = "CmdlineEnter",
+          event = { "CmdlineEnter", "InsertEnter" },
           dependencies = dependencias,
           config = function()
             local cmp = require("cmp")
