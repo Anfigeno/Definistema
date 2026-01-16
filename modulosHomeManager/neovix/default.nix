@@ -197,6 +197,11 @@ in
                 default = [ ];
                 description = "Eventos que activaran el complemento";
               };
+              comandos = mkOption {
+                type = types.listOf types.str;
+                default = [ ];
+                description = "Comandos que activaran el complemento";
+              };
               teclas = mkOption {
                 type = types.attrsOf (
                   types.submodule {
@@ -307,6 +312,15 @@ in
                       event = ${lib.generators.toLua { } eventos},
                     '';
 
+                formatearComandosDeComplemento =
+                  comandos:
+                  if comandos == [ ] then
+                    ""
+                  else
+                    /* lua */ ''
+                      cmd = ${lib.generators.toLua { } comandos},
+                    '';
+
                 accionOComando =
                   accion: comando:
                   assert (accion != "" || comando != "");
@@ -366,6 +380,7 @@ in
                       ${formatearDependenciasDeComplemento dependencias}
                       lazy = ${if lazy.activar then "true" else "false"},
                       ${formatearEventosDeComplemento lazy.eventos}
+                      ${formatearComandosDeComplemento lazy.comandos}
                       ${formatearTeclasDeComplemento lazy.teclas}
                       ${configuracionONo configuracion}
                     }'';

@@ -1,6 +1,10 @@
 { ... }:
 {
   imports = [
+    ./keep-split-ratio
+    ./markview
+    ./inc-rename
+    ./image
     ./hover
     ./gitsigns
     ./direnv
