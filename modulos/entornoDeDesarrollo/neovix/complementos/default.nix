@@ -1,6 +1,9 @@
 { ... }:
 {
   imports = [
+    ./mini-surround
+    ./mini-move
+    ./mini-icons
     ./fyler
     ./autopairs
     ./bufferline

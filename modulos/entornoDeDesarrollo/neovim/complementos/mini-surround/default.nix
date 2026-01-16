@@ -4,7 +4,7 @@
   config = # lua
     ''
       ---@param paquete string
-      ---@diagnostic disabe-next-ine: miss-name
+      ---@diagnostic disable-next-line: miss-name
       function(paquete)
         return {
           dir = paquete,
