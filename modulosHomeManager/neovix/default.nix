@@ -231,14 +231,6 @@ in
                         description = "Descripción del atajo de teclado";
                       };
                     };
-                    config = {
-                      assertions = [
-                        {
-                          assertion = with config; accion != "" || comando != "";
-                          message = "Debes definir 'accion' o 'comando' para el atajo de teclado";
-                        }
-                      ];
-                    };
                   }
                 );
                 default = { };
@@ -317,6 +309,7 @@ in
 
                 accionOComando =
                   accion: comando:
+                  assert (accion != "" || comando != "");
                   if accion != "" then
                     /* lua */ ''
                       function()
@@ -345,7 +338,7 @@ in
                                  "${nombre}",
                                  ${accionOComando accion comando},
                                   desc = "${descripcion}",
-                                  mode = ${lib.generators.toLua modos}
+                                  mode = ${lib.generators.toLua { } modos}
                                }''
                            ) (builtins.attrNames teclas)
                          )}
