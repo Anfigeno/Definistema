@@ -1,6 +1,8 @@
 { ... }:
 {
   imports = [
+    ./fyler
+    ./autopairs
     ./bufferline
     ./cmp
     ./mestizo
