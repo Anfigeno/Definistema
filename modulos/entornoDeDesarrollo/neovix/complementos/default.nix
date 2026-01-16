@@ -1,6 +1,11 @@
 { ... }:
 {
   imports = [
+    ./navic
+    ./no-neck-pain
+    ./rainbow-delimiters
+    ./rest
+    ./satellite
     ./keep-split-ratio
     ./markview
     ./inc-rename
