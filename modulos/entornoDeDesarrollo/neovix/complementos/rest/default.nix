@@ -3,14 +3,14 @@
   programs.neovix.complementos."Rest" = {
     paquete = pkgs.vimPlugins.rest-nvim;
     dependencias = with pkgs.vimPlugins; [
+      plenary-nvim
       telescope-nvim
       nvim-treesitter
       nvim-nio
     ];
     dependenciasDeSistema = with pkgs; [ curl ];
-    configuracion = /* lua */ ''
-      require("telescope").load_extension("rest")
-    '';
+    dependenciasDeLua = [ "mimetypes" "xml2lua" ];
+    configuracion = /* lua */ ''require("telescope").load_extension("rest")'';
     lazy = {
       tiposDeArchivo = [ "http" ];
       teclas = {
