@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./lualine
     ./mini-surround
     ./mini-move
     ./mini-icons
