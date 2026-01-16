@@ -343,7 +343,7 @@ in
                       },
                     '';
 
-                nombreONo = nombre: if nombre != "" then /* lua */ ''name = ${nombre}'' else "";
+                nombreONo = nombre: if nombre != "" then /* lua */ ''name = "${nombre}"'' else "";
                 configuracionONo =
                   configuracion:
                   if configuracion != "" then
