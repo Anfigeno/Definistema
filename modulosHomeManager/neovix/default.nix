@@ -62,7 +62,11 @@ in
               description = "Configuracion Lua del complemento";
             };
             lazy = {
-              activar = mkEnableOption "Activar carga perezosa del complemento";
+              activar = mkOption {
+                type = types.bool;
+                default = true;
+                description = "Activar carga perezosa del complemento";
+              };
               eventos = mkOption {
                 type = types.listOf (
                   types.enum [
@@ -307,7 +311,7 @@ in
                     ""
                   else
                     /* lua */ ''
-                      event = ${lib.generators.toLua eventos},
+                      event = ${lib.generators.toLua { } eventos},
                     '';
 
                 accionOComando =
@@ -365,7 +369,6 @@ in
                     {
                       dir = "${paquete}",
                       ${nombreONo nombre},
-                      name = "${nombre}",
                       ${formatearDependenciasDeComplemento dependencias}
                       lazy = ${if lazy.activar then "true" else "false"},
                       ${formatearEventosDeComplemento lazy.eventos}
