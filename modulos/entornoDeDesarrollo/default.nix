@@ -8,6 +8,7 @@ let
 in
 {
   imports = [
+    ./neovix
     ./bat
     ./cliphist
     ./delta

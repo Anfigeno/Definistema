@@ -18,6 +18,9 @@
     useUserPackages = true;
     users.${usuario} = ./homePorDefecto.nix;
     backupFileExtension = "respaldo-hm";
+    sharedModules = [
+      ../modulosHomeManager/neovix
+    ];
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

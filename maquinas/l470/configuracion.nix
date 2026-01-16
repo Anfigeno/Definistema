@@ -1,7 +1,14 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 {
   definistema = {
-    entornoDeDesarrollo.activar = true;
+    entornoDeDesarrollo = {
+      activar = true;
+      neovim.activar = lib.mkForce false;
+    };
     entornoHyprland.activar = true;
 
     firefox.activar = true;
