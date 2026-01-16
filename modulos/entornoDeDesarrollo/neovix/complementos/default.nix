@@ -1,6 +1,11 @@
 { ... }:
 {
   imports = [
+    ./statuscol
+    ./stay-centered
+    ./tabout
+    ./telescope
+    ./tiny-code-action
     ./navic
     ./no-neck-pain
     ./rainbow-delimiters
