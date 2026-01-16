@@ -1,6 +1,11 @@
 { ... }:
 {
   imports = [
+    ./hover
+    ./gitsigns
+    ./direnv
+    ./colorizer
+    ./modes
     ./lualine
     ./mini-surround
     ./mini-move
