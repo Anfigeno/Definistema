@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.neovix.complementos."Dashboard Nvim" = {
+  programs.neovix.complementos."Dashboard" = {
     paquete = pkgs.vimPlugins.dashboard-nvim;
     configuracion = /* lua */ ''
       require("dashboard").setup({

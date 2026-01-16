@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.neovix.complementos."Nvim CMP" = {
+  programs.neovix.complementos."CMP" = {
     paquete = pkgs.vimPlugins.nvim-cmp;
     dependencias = with pkgs.vimPlugins; [
       cmp-nvim-lsp

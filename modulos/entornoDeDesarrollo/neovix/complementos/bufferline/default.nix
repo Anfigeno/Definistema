@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.neovix.complementos."Bufferline.nvim" = {
+  programs.neovix.complementos."Bufferline" = {
     paquete = pkgs.vimPlugins.bufferline-nvim;
     dependencias = with pkgs.vimPlugins; [ scope-nvim ];
     configuracion = /* lua */ ''

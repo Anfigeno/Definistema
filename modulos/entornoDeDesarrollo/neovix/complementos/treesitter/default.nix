@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  programs.neovix.complementos."Nvim Treesitter" = {
+  programs.neovix.complementos."Treesitter" = {
     paquete = pkgs.vimPlugins.nvim-treesitter;
     dependencias = import ./gramaticas.nix { inherit pkgs; };
     configuracion = /* lua */ ''
