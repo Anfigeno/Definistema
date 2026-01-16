@@ -32,7 +32,11 @@ in
       type = types.attrsOf (
         types.submodule {
           options = {
-            activar = mkEnableOption "Activar complemento";
+            activar = mkOption {
+              type = types.bool;
+              default = true;
+              description = "Activar complemento";
+            };
             paquete = mkOption {
               type = types.package;
               description = "Paquete del complemento";
