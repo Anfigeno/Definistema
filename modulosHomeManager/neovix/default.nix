@@ -70,6 +70,7 @@ in
               eventos = mkOption {
                 type = types.listOf (
                   types.enum [
+                    "VeryLazy"
                     "BufAdd"
                     "BufDelete"
                     "BufEnter"
