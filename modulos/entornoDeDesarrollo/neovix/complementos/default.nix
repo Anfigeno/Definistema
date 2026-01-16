@@ -1,6 +1,8 @@
 { ... }:
 {
   imports = [
+    ./bufferline
+    ./cmp
     ./mestizo
     ./treesitter
     ./dashboard
