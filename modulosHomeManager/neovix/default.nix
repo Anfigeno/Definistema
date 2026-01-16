@@ -281,6 +281,7 @@ in
         plugins = [
           {
             plugin = pkgs.vimPlugins.lazy-nvim;
+            type = "lua";
             config =
               let
                 formatearDependenciasDeComplemento =
@@ -380,17 +381,15 @@ in
 
                 complementosFormateadosALazy =
                   if cfg.complementos == { } then
-                    ""
+                    "{}"
                   else
                     /* lua */ ''
-                      spec = {
-                        ${builtins.concatStringsSep "\n," complementosFormateadosALua},
-                      },
+                      {${builtins.concatStringsSep "\n," complementosFormateadosALua}}
                     '';
               in
               /* lua */ ''
                 require("lazy").setup({
-                  ${complementosFormateadosALazy}
+                  spec = ${complementosFormateadosALazy},
                   checker = { enabled = false },
                   pkg = { enabled = false },
                   rocks = { enabled = false },
