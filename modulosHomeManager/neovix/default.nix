@@ -70,6 +70,7 @@ in
               eventos = mkOption {
                 type = types.listOf (
                   types.enum [
+                    "LspAttach"
                     "VeryLazy"
                     "BufAdd"
                     "BufDelete"
@@ -202,6 +203,11 @@ in
                 default = [ ];
                 description = "Comandos que activaran el complemento";
               };
+              tiposDeArchivo = mkOption {
+                type = types.listOf types.str;
+                default = [ ];
+                description = "Tipos de archivo que activaran el complemento";
+              };
               teclas = mkOption {
                 type = types.attrsOf (
                   types.submodule {
@@ -321,6 +327,15 @@ in
                       cmd = ${lib.generators.toLua { } comandos},
                     '';
 
+                formatearTiposDeArchivoDeComplemento =
+                  tiposDeArchivo:
+                  if tiposDeArchivo == [ ] then
+                    ""
+                  else
+                    /* lua */ ''
+                      ft = ${lib.generators.toLua { } tiposDeArchivo},
+                    '';
+
                 accionOComando =
                   accion: comando:
                   assert (accion != "" || comando != "");
@@ -381,6 +396,7 @@ in
                       lazy = ${if lazy.activar then "true" else "false"},
                       ${formatearEventosDeComplemento lazy.eventos}
                       ${formatearComandosDeComplemento lazy.comandos}
+                      ${formatearTiposDeArchivoDeComplemento lazy.tiposDeArchivo}
                       ${formatearTeclasDeComplemento lazy.teclas}
                       ${configuracionONo configuracion}
                     }'';
