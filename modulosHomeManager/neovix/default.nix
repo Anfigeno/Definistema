@@ -336,17 +336,18 @@ in
                       ft = ${lib.generators.toLua { } tiposDeArchivo},
                     '';
 
-                accionOComando =
+                accionOComandoONo =
                   accion: comando:
-                  assert (accion != "" || comando != "");
-                  if accion != "" then
+                  if accion == "" && comando == "" then
+                    ""
+                  else if accion != "" then
                     /* lua */ ''
                       function()
                         ${accion}
-                      end
+                      end,
                     ''
                   else
-                    ''"${comando}"'';
+                    ''"${comando}",'';
 
                 formatearTeclasDeComplemento =
                   teclas: # lua
@@ -365,7 +366,7 @@ in
                              /* lua */ ''
                                {
                                  "${nombre}",
-                                 ${accionOComando accion comando},
+                                 ${accionOComandoONo accion comando}
                                   desc = "${descripcion}",
                                   mode = ${lib.generators.toLua { } modos}
                                }''

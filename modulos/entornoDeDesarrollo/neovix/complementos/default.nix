@@ -1,6 +1,11 @@
 { ... }:
 {
   imports = [
+    ./todo-comments
+    ./trouble
+    ./ts-autotag
+    ./ufo
+    ./wich-key
     ./statuscol
     ./stay-centered
     ./tabout
