@@ -296,47 +296,47 @@ in
             type = "lua";
             config =
               let
-                formatearDependenciasDeComplemento =
+                inherit (import ./util.nix) construirTablaDeLua;
+                aLua = set: lib.generators.toLua { } set;
+
+                formatearDependencias =
                   dependencias:
                   if dependencias == [ ] then
                     ""
                   else
                     /* lua */ ''
-                      dependencies = {
-                        ${builtins.concatStringsSep ",\n" (
-                          map (dependencia: /* lua */ ''{ dir = "${dependencia}"}'') dependencias
-                        )}
-                      },
+                      dependencies =
+                        ${construirTablaDeLua (map (dependencia: /* lua */ ''{ dir = "${dependencia}" }'') dependencias)}
                     '';
 
-                formatearEventosDeComplemento =
+                formatearEventos =
                   eventos:
                   if eventos == [ ] then
                     ""
                   else
                     /* lua */ ''
-                      event = ${lib.generators.toLua { } eventos},
+                      event = ${aLua eventos}
                     '';
 
-                formatearComandosDeComplemento =
+                formatearComandos =
                   comandos:
                   if comandos == [ ] then
                     ""
                   else
                     /* lua */ ''
-                      cmd = ${lib.generators.toLua { } comandos},
+                      cmd = ${aLua comandos}
                     '';
 
-                formatearTiposDeArchivoDeComplemento =
+                formatearTiposDeArchivo =
                   tiposDeArchivo:
                   if tiposDeArchivo == [ ] then
                     ""
                   else
                     /* lua */ ''
-                      ft = ${lib.generators.toLua { } tiposDeArchivo},
+                      ft = ${aLua tiposDeArchivo}
                     '';
 
-                accionOComandoONo =
+                accionComandoONada =
                   accion: comando:
                   if accion == "" && comando == "" then
                     ""
@@ -344,10 +344,12 @@ in
                     /* lua */ ''
                       function()
                         ${accion}
-                      end,
+                      end
                     ''
                   else
-                    ''"${comando}",'';
+                    ''"${comando}"'';
+
+                descripcionONada = descripcion: if descripcion == "" then "" else ''desc = "${descripcion}"'';
 
                 formatearTeclasDeComplemento =
                   teclas: # lua
@@ -355,28 +357,28 @@ in
                     ""
                   else
                     /* lua */ ''
-                       keys = {
-                         ${builtins.concatStringsSep "\n," (
-                           map (
-                             nombre:
-                             let
-                               tecla = teclas.${nombre};
-                             in
-                             with tecla;
-                             /* lua */ ''
-                               {
-                                 "${nombre}",
-                                 ${accionOComandoONo accion comando}
-                                  desc = "${descripcion}",
-                                  mode = ${lib.generators.toLua { } modos}
-                               }''
-                           ) (builtins.attrNames teclas)
-                         )}
-                      },
+                      keys = ${
+                        construirTablaDeLua (
+                          map (
+                            nombre:
+                            let
+                              tecla = teclas.${nombre};
+                            in
+                            with tecla;
+                            construirTablaDeLua [
+                              ''"${nombre}"''
+                              (accionComandoONada accion comando)
+                              (descripcionONada descripcion)
+                              ''mode = ${aLua modos}''
+                            ]
+                          ) (builtins.attrNames teclas)
+                        )
+                      }
                     '';
 
-                nombreONo = nombre: if nombre != "" then /* lua */ ''name = "${nombre}"'' else "";
-                configuracionONo =
+                nombreONada = nombre: if nombre != "" then ''name = "${nombre}"'' else "";
+
+                configuracionONada =
                   configuracion:
                   if configuracion != "" then
                     /* lua */ ''
@@ -389,20 +391,19 @@ in
                 formatearComplementoDeLua =
                   nombre: complemento:
                   with complemento; # lua
-                  ''
-                    {
-                      dir = "${paquete}",
-                      ${nombreONo nombre},
-                      ${formatearDependenciasDeComplemento dependencias}
-                      lazy = ${if lazy.activar then "true" else "false"},
-                      ${formatearEventosDeComplemento lazy.eventos}
-                      ${formatearComandosDeComplemento lazy.comandos}
-                      ${formatearTiposDeArchivoDeComplemento lazy.tiposDeArchivo}
-                      ${formatearTeclasDeComplemento lazy.teclas}
-                      ${configuracionONo configuracion}
-                    }'';
+                  construirTablaDeLua [
+                    ''dir = "${paquete}"''
+                    (nombreONada nombre)
+                    (formatearDependencias dependencias)
+                    ''lazy = ${if lazy.activar then "true" else "false"}''
+                    (formatearEventos lazy.eventos)
+                    (formatearComandos lazy.comandos)
+                    (formatearTiposDeArchivo lazy.tiposDeArchivo)
+                    (configuracionONada configuracion)
+                    (formatearTeclasDeComplemento lazy.teclas)
+                  ];
 
-                complementosFormateadosALua = builtins.filter (x: x != "") (
+                complementosFormateadosALua = construirTablaDeLua (
                   map (
                     nombre:
                     let
@@ -411,18 +412,10 @@ in
                     if complemento.activar then formatearComplementoDeLua nombre complemento else ""
                   ) nombresDeComplementos
                 );
-
-                complementosFormateadosALazy =
-                  if cfg.complementos == { } then
-                    "{}"
-                  else
-                    /* lua */ ''
-                      {${builtins.concatStringsSep "\n," complementosFormateadosALua}}
-                    '';
               in
               /* lua */ ''
                 require("lazy").setup({
-                  spec = ${complementosFormateadosALazy},
+                  spec = ${complementosFormateadosALua},
                   checker = { enabled = false },
                   pkg = { enabled = false },
                   rocks = { enabled = false },
