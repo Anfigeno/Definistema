@@ -7,7 +7,10 @@
   home-manager.users.${usuario} =
     { ... }:
     {
-      imports = [ ./complementos ];
+      imports = [
+        ./complementos
+        ./lenguajes
+      ];
 
       programs.neovix = {
         activar = true;

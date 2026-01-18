@@ -10,6 +10,8 @@ let
   cfg = config.programs.neovix;
 in
 {
+  imports = [ ./configuracionDeTreesitter.nix ];
+
   options.programs.neovix = {
     activar = mkEnableOption "Activar neovix";
     editorPorDefecto = mkEnableOption "Editor por defecto";
@@ -253,6 +255,51 @@ in
       );
       default = { };
       description = "Complementos de Neovim";
+    };
+    lenguajes = mkOption {
+      type = types.attrsOf (
+        types.submodule {
+          options = {
+            activar = mkOption {
+              type = types.bool;
+              default = true;
+              description = "Activar la configuración del lenguaje";
+            };
+            gramaticas = mkOption {
+              type = types.listOf types.package;
+              default = [ ];
+              description = "Paquetes de la gramática de Treesitter";
+            };
+            lsp = mkOption {
+              type = types.attrsOf (
+                types.submodule {
+                  options = {
+                    activar = mkOption {
+                      type = types.bool;
+                      default = true;
+                      description = "Activar el LSP del lenguaje";
+                    };
+                    paquete = mkOption {
+                      type = types.nullOr types.package;
+                      default = null;
+                      description = "Paquete del LSP del lenguaje";
+                    };
+                    configuracion = mkOption {
+                      type = types.nullOr types.anything;
+                      default = null;
+                      description = "Configuración del LSP del lenguaje";
+                    };
+                  };
+                }
+              );
+              default = { };
+              description = "Configuración del LSP del lenguaje";
+            };
+          };
+        }
+      );
+      default = { };
+      description = "Configuración de lenguajes (gramaticas, LSP, formateadores)";
     };
   };
 
