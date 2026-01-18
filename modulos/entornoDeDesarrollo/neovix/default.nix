@@ -9,7 +9,8 @@
     {
       imports = [
         ./complementos
-        ./lenguajes
+        ./lenguajes.nix
+        ./formateadores.nix
       ];
 
       programs.neovix = {

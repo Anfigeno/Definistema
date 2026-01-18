@@ -10,7 +10,10 @@ let
   cfg = config.programs.neovix;
 in
 {
-  imports = [ ./configuracionDeTreesitter.nix ];
+  imports = [
+    ./configuracionDeTreesitter.nix
+    ./configuracionDeNeoformat.nix
+  ];
 
   options.programs.neovix = {
     activar = mkEnableOption "Activar neovix";
@@ -256,6 +259,30 @@ in
       default = { };
       description = "Complementos de Neovim";
     };
+    formateadores = mkOption {
+      type = types.attrsOf (
+        types.submodule {
+          options = {
+            activar = mkOption {
+              type = types.bool;
+              default = true;
+              description = "Activar el formateador";
+            };
+            paquete = mkOption {
+              type = types.nullOr types.package;
+              default = null;
+              description = "Paquete del formateador";
+            };
+            configuracion = mkOption {
+              type = types.attrsOf types.anything;
+              description = "Configuración del formateador";
+            };
+          };
+        }
+      );
+      default = { };
+      description = "Configuración de formateadores";
+    };
     lenguajes = mkOption {
       type = types.attrsOf (
         types.submodule {
@@ -269,6 +296,11 @@ in
               type = types.listOf types.package;
               default = [ ];
               description = "Paquetes de la gramática de Treesitter";
+            };
+            formateadores = mkOption {
+              type = types.nullOr (types.listOf (types.enum (builtins.attrNames cfg.formateadores)));
+              default = null;
+              description = "Formateadores activos para este lenguaje";
             };
             lsp = mkOption {
               type = types.attrsOf (
@@ -343,8 +375,7 @@ in
             type = "lua";
             config =
               let
-                inherit (import ./util.nix) construirTablaDeLua;
-                aLua = set: lib.generators.toLua { } set;
+                inherit (import ./util.nix { inherit lib; }) construirTablaDeLua aLua;
 
                 formatearDependencias =
                   dependencias:
