@@ -337,168 +337,117 @@ in
   config = lib.mkIf cfg.activar {
     programs.neovim =
       let
-        nombresDeComplementos = builtins.attrNames cfg.complementos;
+        complementosActivados =
+          cfg.complementos
+          |> lib.mapAttrsToList (clave: complemento: if !complemento.activar then clave else null)
+          |> builtins.filter (x: x != null)
+          |> removeAttrs cfg.complementos;
       in
       {
         enable = true;
         defaultEditor = cfg.editorPorDefecto;
         extraLuaConfig = cfg.configuracion;
         extraPackages =
-          cfg.paquetesExtra
-          ++ (lib.lists.flatten (
-            map (
-              nombre:
-              let
-                complemento = cfg.complementos.${nombre};
-              in
-              if complemento.activar then complemento.dependenciasDeSistema else [ ]
-            ) nombresDeComplementos
-          ));
+          complementosActivados
+          |> lib.mapAttrsToList (_: complemento: complemento.dependenciasDeSistema)
+          |> lib.flatten
+          |> (x: cfg.paquetesExtra ++ x);
         extraLuaPackages =
           let
-            paquetesLuaExtraDeComplementos = lib.lists.flatten (
-              map (
-                nombre:
-                let
-                  complemento = cfg.complementos.${nombre};
-                in
-                if complemento.activar then complemento.dependenciasDeLua else [ ]
-              ) nombresDeComplementos
-            );
-            paquetesLuaExtra = cfg.paquetesLuaExtra ++ paquetesLuaExtraDeComplementos;
+            paquetesLuaExtra =
+              complementosActivados
+              |> lib.mapAttrsToList (_: complemento: complemento.dependenciasDeLua)
+              |> lib.lists.flatten;
           in
-          ps: map (nombre: ps.${nombre}) paquetesLuaExtra;
+          ps: paquetesLuaExtra |> map (nombre: ps.${nombre});
         plugins = [
           {
             plugin = pkgs.vimPlugins.lazy-nvim;
             type = "lua";
             config =
               let
-                inherit (import ./util.nix { inherit lib; }) construirTablaDeLua aLua;
+
+                crearPropiedadDeLista = clave: lista: if lista == [ ] then { } else { ${clave} = lista; };
 
                 formatearDependencias =
                   dependencias:
-                  if dependencias == [ ] then
-                    ""
-                  else
-                    /* lua */ ''
-                      dependencies =
-                        ${construirTablaDeLua (map (dependencia: /* lua */ ''{ dir = "${dependencia}" }'') dependencias)}
-                    '';
+                  dependencias
+                  |> map (dependencia: {
+                    dir = "${dependencia}";
+                  })
+                  |> crearPropiedadDeLista "dependencies";
 
-                formatearEventos =
-                  eventos:
-                  if eventos == [ ] then
-                    ""
-                  else
-                    /* lua */ ''
-                      event = ${aLua eventos}
-                    '';
+                formatearEventos = eventos: crearPropiedadDeLista "event" eventos;
 
-                formatearComandos =
-                  comandos:
-                  if comandos == [ ] then
-                    ""
-                  else
-                    /* lua */ ''
-                      cmd = ${aLua comandos}
-                    '';
+                formatearTiposDeArchivos = tiposDeArchivo: crearPropiedadDeLista "ft" tiposDeArchivo;
 
-                formatearTiposDeArchivo =
-                  tiposDeArchivo:
-                  if tiposDeArchivo == [ ] then
-                    ""
-                  else
-                    /* lua */ ''
-                      ft = ${aLua tiposDeArchivo}
-                    '';
+                formatearComandos = comandos: crearPropiedadDeLista "cmd" comandos;
 
-                accionComandoONada =
-                  accion: comando:
-                  if accion == "" && comando == "" then
-                    ""
-                  else if accion != "" then
-                    /* lua */ ''
-                      function()
-                        ${accion}
-                      end
-                    ''
-                  else
-                    ''"${comando}"'';
-
-                descripcionONada = descripcion: if descripcion == "" then "" else ''desc = "${descripcion}"'';
-
-                formatearTeclasDeComplemento =
-                  teclas: # lua
-                  if teclas == { } then
-                    ""
-                  else
-                    /* lua */ ''
-                      keys = ${
-                        construirTablaDeLua (
-                          map (
-                            nombre:
-                            let
-                              tecla = teclas.${nombre};
-                            in
-                            with tecla;
-                            construirTablaDeLua [
-                              ''"${nombre}"''
-                              (accionComandoONada accion comando)
-                              (descripcionONada descripcion)
-                              ''mode = ${aLua modos}''
-                            ]
-                          ) (builtins.attrNames teclas)
-                        )
-                      }
-                    '';
-
-                nombreONada = nombre: if nombre != "" then ''name = "${nombre}"'' else "";
-
-                configuracionONada =
+                formatearConfiguracion =
                   configuracion:
-                  if configuracion != "" then
-                    /* lua */ ''
-                      config = function()
-                        ${configuracion}
-                      end''
+                  if configuracion == "" then
+                    { }
                   else
-                    "";
+                    {
+                      config = lib.mkLuaInline /* lua */ ''
+                        function()
+                          ${configuracion}
+                        end
+                      '';
+                    };
 
-                formatearComplementoDeLua =
-                  nombre: complemento:
-                  with complemento; # lua
-                  construirTablaDeLua [
-                    ''dir = "${paquete}"''
-                    (nombreONada nombre)
-                    (formatearDependencias dependencias)
-                    ''lazy = ${if lazy.activar then "true" else "false"}''
-                    (formatearEventos lazy.eventos)
-                    (formatearComandos lazy.comandos)
-                    (formatearTiposDeArchivo lazy.tiposDeArchivo)
-                    (configuracionONada configuracion)
-                    (formatearTeclasDeComplemento lazy.teclas)
-                  ];
+                accionOComando =
+                  tecla: with tecla; if accion != "" then /* lua */ ''function() ${accion} end'' else ''"${comando}"'';
 
-                complementosFormateadosALua = construirTablaDeLua (
-                  map (
-                    nombre:
-                    let
-                      complemento = cfg.complementos.${nombre};
-                    in
-                    if complemento.activar then formatearComplementoDeLua nombre complemento else ""
-                  ) nombresDeComplementos
-                );
+                formatearTeclas =
+                  teclas:
+                  if teclas == { } then
+                    { }
+                  else
+                    {
+                      keys =
+                        teclas
+                        |> lib.mapAttrsToList (
+                          clave: tecla:
+                          lib.mkLuaInline /* lua */ ''
+                            {
+                              "${clave}",
+                              ${accionOComando tecla},
+                              mode = ${lib.generators.toLua { } tecla.modos},
+                              desc = "${tecla.descripcion}"
+                            } ''
+                        );
+                    };
+
+                complementosFormateadosParaLazy =
+                  complementosActivados
+                  |> lib.mapAttrsToList (
+                    clave: complemento:
+                    with complemento;
+                    {
+                      dir = "${complemento.paquete}";
+                      name = clave;
+                      lazy = lazy.activar;
+                    }
+                    // formatearConfiguracion complemento.configuracion
+                    // formatearDependencias dependencias
+                    // formatearTiposDeArchivos lazy.tiposDeArchivo
+                    // formatearEventos lazy.eventos
+                    // formatearComandos lazy.comandos
+                    // formatearTeclas lazy.teclas
+                  );
+
+                configuracion = {
+                  spec = complementosFormateadosParaLazy;
+                  checker.enabled = false;
+                  pkg.enabled = false;
+                  rocks.enabled = false;
+                  install.missing = false;
+                  change_detection.enabled = false;
+                };
               in
               /* lua */ ''
-                require("lazy").setup({
-                  spec = ${complementosFormateadosALua},
-                  checker = { enabled = false },
-                  pkg = { enabled = false },
-                  rocks = { enabled = false },
-                  install = { missing = false },
-                  change_detection = { enabled = false }
-                })
+                require("lazy").setup(${lib.generators.toLua { } configuracion})
               '';
           }
         ];
