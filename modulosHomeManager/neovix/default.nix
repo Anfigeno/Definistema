@@ -13,6 +13,7 @@ in
   imports = [
     ./configuracionDeTreesitter.nix
     ./configuracionDeNeoformat.nix
+    ./configuracionDeLSPConfig.nix
   ];
 
   options.programs.neovix = {
