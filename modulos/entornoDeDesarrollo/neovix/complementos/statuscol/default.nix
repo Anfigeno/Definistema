@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.neovix.complementos."Statuscol" = {
+    activar = false;
     paquete = pkgs.vimPlugins.statuscol-nvim;
     configuracion = /* lua */ ''
       local builtin = require("statuscol.builtin")

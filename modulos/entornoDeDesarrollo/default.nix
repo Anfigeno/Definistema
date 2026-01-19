@@ -18,7 +18,6 @@ in
     ./gh
     ./git
     ./lsd
-    ./neovim
     ./yazi
     ./zellij
     ./ssh
@@ -39,7 +38,7 @@ in
       gh.activar = true;
       git.activar = true;
       lsd.activar = true;
-      neovim.activar = true;
+      neovix.activar = true;
       yazi.activar = true;
       zellij.activar = true;
       ssh.activar = true;

@@ -5,10 +5,7 @@
 }:
 {
   definistema = {
-    entornoDeDesarrollo = {
-      activar = true;
-      neovim.activar = lib.mkForce false;
-    };
+    entornoDeDesarrollo.activar = true;
     entornoHyprland.activar = true;
 
     firefox.activar = true;

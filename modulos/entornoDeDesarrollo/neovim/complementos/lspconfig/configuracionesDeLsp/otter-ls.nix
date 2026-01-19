@@ -1,4 +1,0 @@
-# lua
-''
-  lsps["otter-ls"] = {}
-''

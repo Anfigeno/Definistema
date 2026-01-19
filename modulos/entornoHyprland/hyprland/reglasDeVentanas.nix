@@ -9,11 +9,10 @@ let
     }
     {
       clase = "Neovim";
-      condicion = cfg.entornoDeDesarrollo.neovim.activar;
+      condicion = cfg.entornoDeDesarrollo.neovix.activar;
     }
   ];
 in
-[ ]
-++ (map (
-  ventana: if ventana.condicion then "opacity 0.9, class:${ventana.clase}" else null
-) ventanasTransparentes)
+ventanasTransparentes
+|> map (ventana: if ventana.condicion then "opacity 0.9, class:${ventana.clase}" else "")
+|> builtins.filter (x: x != "")
