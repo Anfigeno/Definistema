@@ -6,33 +6,33 @@
 }:
 let
   cfg = config.programs.neovix;
+
+  lenguajesActivadosYConGramaticas =
+    cfg.lenguajes
+    |> lib.mapAttrsToList (
+      clave: lenguaje: with lenguaje; if !activar || gramaticas == null then clave else null
+    )
+    |> builtins.filter (x: x != null)
+    |> removeAttrs cfg.lenguajes;
 in
 {
-  programs.neovix.complementos."Treesitter" = {
-    paquete = pkgs.vimPlugins.nvim-treesitter;
-    dependencias =
-      let
-        todasLasGramaticas = lib.lists.flatten (
-          map (
-            nombre:
-            let
-              lenguaje = cfg.lenguajes.${nombre};
-            in
-            with lenguaje;
-            if activar then gramaticas else [ ]
-          ) (builtins.attrNames cfg.lenguajes)
-        );
-      in
-      todasLasGramaticas;
-    configuracion = /* lua */ ''
-      require('nvim-treesitter.configs').setup({
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
-    '';
-    lazy.eventos = [
-      "BufReadPost"
-      "BufNewFile"
-    ];
+  programs.neovix.complementos = lib.mkIf (cfg.activar && lenguajesActivadosYConGramaticas != { }) {
+    "Treesitter" = {
+      paquete = pkgs.vimPlugins.nvim-treesitter;
+      dependencias =
+        lenguajesActivadosYConGramaticas
+        |> lib.mapAttrsToList (_: lenguaje: lenguaje.gramaticas)
+        |> lib.lists.flatten;
+      configuracion = /* lua */ ''
+        require('nvim-treesitter.configs').setup({
+          highlight = { enable = true },
+          indent = { enable = true },
+        })
+      '';
+      lazy.eventos = [
+        "BufReadPost"
+        "BufNewFile"
+      ];
+    };
   };
 }

@@ -292,8 +292,8 @@ in
               description = "Activar la configuración del lenguaje";
             };
             gramaticas = mkOption {
-              type = types.listOf types.package;
-              default = [ ];
+              type = with types; nullOr (listOf package);
+              default = null;
               description = "Paquetes de la gramática de Treesitter";
             };
             formateadores = mkOption {
