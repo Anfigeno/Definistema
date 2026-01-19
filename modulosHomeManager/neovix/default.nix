@@ -261,27 +261,25 @@ in
       description = "Complementos de Neovim";
     };
     formateadores = mkOption {
-      type = types.attrsOf (
-        types.submodule {
-          options = {
-            activar = mkOption {
-              type = types.bool;
-              default = true;
-              description = "Activar el formateador";
+      type = types.nullOr (
+        types.attrsOf (
+          types.submodule {
+            options = {
+              paquete = mkOption {
+                type = types.nullOr types.package;
+                default = null;
+                description = "Paquete del formateador";
+              };
+              configuracion = mkOption {
+                type = types.nullOr (types.attrsOf types.anything);
+                default = null;
+                description = "Configuración del formateador (https://github.com/sbdchd/neoformat)";
+              };
             };
-            paquete = mkOption {
-              type = types.nullOr types.package;
-              default = null;
-              description = "Paquete del formateador";
-            };
-            configuracion = mkOption {
-              type = types.attrsOf types.anything;
-              description = "Configuración del formateador";
-            };
-          };
-        }
+          }
+        )
       );
-      default = { };
+      default = null;
       description = "Configuración de formateadores";
     };
     lenguajes = mkOption {
