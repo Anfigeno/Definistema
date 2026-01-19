@@ -301,36 +301,36 @@ in
               default = null;
               description = "Formateadores activos para este lenguaje";
             };
-            lsp = mkOption {
-              type = types.attrsOf (
-                types.submodule {
-                  options = {
-                    activar = mkOption {
-                      type = types.bool;
-                      default = true;
-                      description = "Activar el LSP del lenguaje";
-                    };
-                    paquete = mkOption {
-                      type = types.nullOr types.package;
-                      default = null;
-                      description = "Paquete del LSP del lenguaje";
-                    };
-                    configuracion = mkOption {
-                      type = types.nullOr types.anything;
-                      default = null;
-                      description = "Configuración del LSP del lenguaje";
-                    };
-                  };
-                }
-              );
-              default = { };
-              description = "Configuración del LSP del lenguaje";
+            lsps = mkOption {
+              type = with types; nullOr (listOf (enum (builtins.attrNames cfg.lsps)));
+              default = null;
+              description = "LSPs activos para este lenguaje";
             };
           };
         }
       );
       default = { };
       description = "Configuración de lenguajes (gramaticas, LSP, formateadores)";
+    };
+    lsps = mkOption {
+      type = types.attrsOf (
+        types.submodule {
+          options = {
+            paquete = mkOption {
+              type = with types; nullOr package;
+              default = null;
+              description = "Paquete del LSP del lenguaje";
+            };
+            configuracion = mkOption {
+              type = with types; nullOr (attrsOf anything);
+              default = null;
+              description = "Configuración del LSP del lenguaje";
+            };
+          };
+        }
+      );
+      default = { };
+      description = "Configuración del LSPs";
     };
   };
 

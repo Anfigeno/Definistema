@@ -11,6 +11,7 @@
         ./complementos
         ./lenguajes.nix
         ./formateadores.nix
+        ./lsps.nix
       ];
 
       programs.neovix = {

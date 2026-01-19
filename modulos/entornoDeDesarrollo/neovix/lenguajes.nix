@@ -1,15 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   tsi = pkgs.vimPlugins.nvim-treesitter-parsers;
-  configuracionDeLspsComun = {
-    capabilities = lib.generators.mkLuaInline /* lua */ ''require("cmp_nvim_lsp").default_capabilities()'';
-    on_attach = lib.generators.mkLuaInline /* lua */ ''
-      function(client, bufnr)
-        if client.server_capabilities.documentSymbolProvider then
-          require("nvim-navic").attach(client, bufnr)
-        end
-      end'';
-  };
 in
 {
   programs.neovix.lenguajes = {
@@ -27,35 +18,10 @@ in
         tsx
       ];
       formateadores = [ "biome" ];
-      lsp."ts_ls" = {
-        paquete = pkgs.typescript-language-server;
-        configuracion = configuracionDeLspsComun // {
-          settings = {
-            javascript = {
-              inlayHints = {
-                includeInlayEnumMemberValueHints = true;
-                includeInlayFunctionLikeReturnTypeHints = true;
-                includeInlayFunctionParameterTypeHints = true;
-                includeInlayParameterNameHints = "all";
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-                includeInlayPropertyDeclarationTypeHints = true;
-                includeInlayVariableTypeHints = true;
-              };
-            };
-            typescript = {
-              inlayHints = {
-                includeInlayEnumMemberValueHints = true;
-                includeInlayFunctionLikeReturnTypeHints = true;
-                includeInlayFunctionParameterTypeHints = true;
-                includeInlayParameterNameHints = "all";
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-                includeInlayPropertyDeclarationTypeHints = true;
-                includeInlayVariableTypeHints = true;
-              };
-            };
-          };
-        };
-      };
+      lsps = [
+        "ts_ls"
+        "biome"
+      ];
     };
     "javascript" = {
       gramaticas = with tsi; [
@@ -63,17 +29,18 @@ in
         jsdoc
       ];
       formateadores = [ "biome" ];
+      lsps = [
+        "ts_ls"
+        "biome"
+      ];
     };
     "nix" = {
       gramaticas = [ tsi.nix ];
       formateadores = [ "nixfmt" ];
-      lsp = {
-        "nixd" = {
-          paquete = pkgs.nixd;
-          configuracion = configuracionDeLspsComun;
-        };
-        "nil_ls".paquete = pkgs.nil;
-      };
+      lsps = [
+        "nixd"
+        "nil_ls"
+      ];
     };
     "qml" = {
       gramaticas = with tsi; [
@@ -90,19 +57,7 @@ in
         luadoc
       ];
       formateadores = [ "stylua" ];
-      lsp."lua_ls" = {
-        paquete = pkgs.lua-language-server;
-        configuracion = configuracionDeLspsComun // {
-          settings = {
-            Lua = {
-              hint = {
-                enable = true;
-                setType = true;
-              };
-            };
-          };
-        };
-      };
+      lsps = [ "lua_ls" ];
     };
     "json" = {
       gramaticas = with tsi; [
