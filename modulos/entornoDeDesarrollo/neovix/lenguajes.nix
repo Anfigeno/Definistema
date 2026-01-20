@@ -18,6 +18,7 @@
       ];
       formateadores = [ "rufo" ];
       lsps = [ "solargraph" ];
+      entornoDeEjecucion = "ruby";
     };
     "markdown" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
@@ -45,6 +46,7 @@
         "ts_ls"
         "biome"
       ];
+      entornoDeEjecucion = "bun";
     };
     "javascript" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [

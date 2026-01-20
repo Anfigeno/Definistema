@@ -22,6 +22,7 @@ in
           ./lenguajes.nix
           ./formateadores.nix
           ./lsps.nix
+          ./entornosDeEjecucion.nix
         ];
 
         programs.neovix = {

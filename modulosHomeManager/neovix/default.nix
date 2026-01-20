@@ -14,6 +14,7 @@ in
     ./configuracionDeTreesitter.nix
     ./configuracionDeNeoformat.nix
     ./configuracionDeLSPConfig.nix
+    ./configuracionDeCodeRunner.nix
   ];
 
   options.programs.neovix = {
@@ -282,6 +283,45 @@ in
       default = null;
       description = "Configuración de formateadores";
     };
+    lsps = mkOption {
+      type = types.attrsOf (
+        types.submodule {
+          options = {
+            paquete = mkOption {
+              type = with types; nullOr package;
+              default = null;
+              description = "Paquete del LSP del lenguaje";
+            };
+            configuracion = mkOption {
+              type = with types; nullOr (attrsOf anything);
+              default = null;
+              description = "Configuración del LSP del lenguaje";
+            };
+          };
+        }
+      );
+      default = { };
+      description = "Configuración del LSPs";
+    };
+    entornosDeEjecucion = mkOption {
+      type = types.attrsOf (
+        types.submodule {
+          options = {
+            paquete = mkOption {
+              type = types.package;
+              description = "Paquete del entorno de ejecución";
+            };
+            configuracionDeCodeRunner = mkOption {
+              type = types.str;
+              default = "";
+              description = "Configuración de CRAG666/code_runner.nvim";
+            };
+          };
+        }
+      );
+      default = { };
+      description = "Configuración de entornos de ejecución";
+    };
     lenguajes = mkOption {
       type = types.attrsOf (
         types.submodule {
@@ -306,31 +346,16 @@ in
               default = null;
               description = "LSPs activos para este lenguaje";
             };
+            entornoDeEjecucion = mkOption {
+              type = with types; nullOr (enum (builtins.attrNames cfg.entornosDeEjecucion));
+              default = null;
+              description = "Entorno de ejecución para este lenguaje";
+            };
           };
         }
       );
       default = { };
       description = "Configuración de lenguajes (gramaticas, LSP, formateadores)";
-    };
-    lsps = mkOption {
-      type = types.attrsOf (
-        types.submodule {
-          options = {
-            paquete = mkOption {
-              type = with types; nullOr package;
-              default = null;
-              description = "Paquete del LSP del lenguaje";
-            };
-            configuracion = mkOption {
-              type = with types; nullOr (attrsOf anything);
-              default = null;
-              description = "Configuración del LSP del lenguaje";
-            };
-          };
-        }
-      );
-      default = { };
-      description = "Configuración del LSPs";
     };
   };
 
