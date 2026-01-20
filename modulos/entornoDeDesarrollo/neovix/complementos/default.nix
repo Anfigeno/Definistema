@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./tiny-inline-diagnostics
     ./todo-comments
     ./trouble
     ./ts-autotag

@@ -1,6 +1,5 @@
 { pkgs, ... }:
-# lua
-''
+/* lua */ ''
   vim.opt.termguicolors = true
   vim.opt.number = true
   vim.opt.autoindent = true
@@ -21,3 +20,13 @@
 
   vim.keymap.set("n", "<c-s>", "<cmd>w<cr>")
 ''
++ (
+  [
+    "Error"
+    "Info"
+    "Hint"
+    "Warn"
+  ]
+  |> map (clave: /* lua */ ''vim.fn.sign_define("DiagnosticSign${clave}",{ text = "󰊠 " }) '')
+  |> builtins.concatStringsSep "\n"
+)
