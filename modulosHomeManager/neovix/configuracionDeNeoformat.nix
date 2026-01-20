@@ -72,8 +72,12 @@ in
                     lenguaje.formateadores
                     |> map (
                       nombreDeFormateador:
-                      /* lua */ ''vim.g.neoformat_${clave}_${nombreDeFormateador} = configuracion_${nombreDeFormateador}''
+                      if formateadoresEnUso.${nombreDeFormateador}.configuracion == null then
+                        null
+                      else
+                        /* lua */ ''vim.g.neoformat_${clave}_${nombreDeFormateador} = configuracion_${nombreDeFormateador}''
                     )
+                    |> builtins.filter (x: x != null)
                   )
                   |> lib.lists.flatten
                   |> builtins.concatStringsSep "\n";
