@@ -1,19 +1,42 @@
 { pkgs, ... }:
-let
-  tsi = pkgs.vimPlugins.nvim-treesitter-parsers;
-in
 {
   programs.neovix.lenguajes = {
-    "git".gramaticas = with tsi; [
+    "go" = {
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        go
+        gomod
+        gosum
+        gotmpl
+      ];
+      formateadores = [ "gofmt" ];
+      lsps = [ "gopls" ];
+    };
+    "ruby" = {
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        ruby
+        rbs
+      ];
+      formateadores = [ "rufo" ];
+      lsps = [ "solargraph" ];
+    };
+    "markdown" = {
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        markdown
+        markdown_inline
+      ];
+      formateadores = [ "mdformat" ];
+      lsps = [ "markdown_oxide" ];
+    };
+    "git".gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
       gitattributes
       git_rebase
       git_config
       gitignore
       gitcommit
     ];
-    "http".gramaticas = [ tsi.http ];
+    "http".gramaticas = [ pkgs.vimPlugins.nvim-treesitter-parsers.http ];
     "typescript" = {
-      gramaticas = with tsi; [
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
         typescript
         tsx
       ];
@@ -24,7 +47,7 @@ in
       ];
     };
     "javascript" = {
-      gramaticas = with tsi; [
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
         javascript
         jsdoc
       ];
@@ -35,7 +58,7 @@ in
       ];
     };
     "nix" = {
-      gramaticas = [ tsi.nix ];
+      gramaticas = [ pkgs.vimPlugins.nvim-treesitter-parsers.nix ];
       formateadores = [ "nixfmt" ];
       lsps = [
         "nixd"
@@ -43,14 +66,14 @@ in
       ];
     };
     "qml" = {
-      gramaticas = with tsi; [
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
         qmljs
         qmldir
       ];
       formateadores = [ "qmlformat" ];
     };
     "lua" = {
-      gramaticas = with tsi; [
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
         lua
         luap
         luau
@@ -60,7 +83,7 @@ in
       lsps = [ "lua_ls" ];
     };
     "json" = {
-      gramaticas = with tsi; [
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
         json
         json5
         jsonc

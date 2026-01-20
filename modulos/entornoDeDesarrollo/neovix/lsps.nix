@@ -1,5 +1,10 @@
 { pkgs, lib, ... }:
 {
+  programs.neovix.complementos."LSP Config".dependencias = with pkgs.vimPlugins; [
+    cmp-nvim-lsp
+    nvim-navic
+  ];
+
   programs.neovix.lsps =
     let
       inherit (lib.generators) mkLuaInline;
@@ -15,6 +20,20 @@
       };
     in
     {
+      "gopls" = {
+        paquete = pkgs.gopls;
+        configuracion = configuracionDeLspsComun // {
+          settings.gopls."ui.inlayhint.hints" = {
+            assignVariableTypes = true;
+            compositeLiteralFields = true;
+            compositeLiteralTypes = true;
+            constantValues = true;
+            functionTypeParameters = true;
+            parameterNames = true;
+            rangeVariableTypes = true;
+          };
+        };
+      };
       "nixd" = {
         paquete = pkgs.nixd;
         configuracion = configuracionDeLspsComun;
@@ -24,27 +43,23 @@
         paquete = pkgs.typescript-language-server;
         configuracion = configuracionDeLspsComun // {
           settings = {
-            javascript = {
-              inlayHints = {
-                includeInlayEnumMemberValueHints = true;
-                includeInlayFunctionLikeReturnTypeHints = true;
-                includeInlayFunctionParameterTypeHints = true;
-                includeInlayParameterNameHints = "all";
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-                includeInlayPropertyDeclarationTypeHints = true;
-                includeInlayVariableTypeHints = true;
-              };
+            javascript.inlayHints = {
+              includeInlayEnumMemberValueHints = true;
+              includeInlayFunctionLikeReturnTypeHints = true;
+              includeInlayFunctionParameterTypeHints = true;
+              includeInlayParameterNameHints = "all";
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+              includeInlayPropertyDeclarationTypeHints = true;
+              includeInlayVariableTypeHints = true;
             };
-            typescript = {
-              inlayHints = {
-                includeInlayEnumMemberValueHints = true;
-                includeInlayFunctionLikeReturnTypeHints = true;
-                includeInlayFunctionParameterTypeHints = true;
-                includeInlayParameterNameHints = "all";
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-                includeInlayPropertyDeclarationTypeHints = true;
-                includeInlayVariableTypeHints = true;
-              };
+            typescript.inlayHints = {
+              includeInlayEnumMemberValueHints = true;
+              includeInlayFunctionLikeReturnTypeHints = true;
+              includeInlayFunctionParameterTypeHints = true;
+              includeInlayParameterNameHints = "all";
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+              includeInlayPropertyDeclarationTypeHints = true;
+              includeInlayVariableTypeHints = true;
             };
           };
         };
@@ -53,15 +68,17 @@
       "lua_ls" = {
         paquete = pkgs.lua-language-server;
         configuracion = configuracionDeLspsComun // {
-          settings = {
-            Lua = {
-              hint = {
-                enable = true;
-                setType = true;
-              };
-            };
-          };
+          settings.Lua.hint.enable = true;
+          setType = true;
         };
+      };
+      "markdown_oxide" = {
+        paquete = pkgs.markdown-oxide;
+        configuracion = configuracionDeLspsComun;
+      };
+      "solargraph" = {
+        paquete = pkgs.solargraph;
+        configuracion = configuracionDeLspsComun;
       };
     };
 }

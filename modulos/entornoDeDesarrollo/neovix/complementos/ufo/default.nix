@@ -24,7 +24,6 @@
         "BufNewFile"
       ];
       teclas = {
-        "za".descripcion = "Alterna el pliegue debajo del cursor";
         "zR" = {
           accion = /* lua */ ''require("ufo").openAllFolds()'';
           descripcion = "Abre todos los pliegues";
