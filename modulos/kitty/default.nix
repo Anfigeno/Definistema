@@ -57,6 +57,8 @@ in
 
           cursor_trail = 1;
           cursor_trail_decay = "0.1 0.4";
+
+          allow_remote_control = true;
         };
       };
     };
