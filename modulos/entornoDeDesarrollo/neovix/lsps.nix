@@ -20,6 +20,10 @@
       };
     in
     {
+      "fish_lsp" = {
+        paquete = pkgs.fish-lsp;
+        configuracion = configuracionDeLspsComun;
+      };
       "basedpyright" = {
         paquete = pkgs.basedpyright;
         configuracion = configuracionDeLspsComun;

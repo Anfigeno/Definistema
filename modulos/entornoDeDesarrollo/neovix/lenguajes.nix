@@ -1,6 +1,15 @@
 { pkgs, ... }:
 {
   programs.neovix.lenguajes = {
+    "bash".gramaticas = [ pkgs.vimPlugins.nvim-treesitter-parsers.bash ];
+    "fish" = {
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        fish
+      ];
+      lsps = [ "fish_lsp" ];
+      formateadores = [ "fish_indent" ];
+      entornoDeEjecucion = "fish";
+    };
     "python" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
         python

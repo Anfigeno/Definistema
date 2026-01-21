@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.neovix.formateadores = {
+    "fish_indent".paquete = pkgs.fish;
     "autopep8".paquete = pkgs.python314Packages.autopep8;
     "gofmt".paquete = pkgs.go;
     "mdformat".paquete = pkgs.mdformat;
