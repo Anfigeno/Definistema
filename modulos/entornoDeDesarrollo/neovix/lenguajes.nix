@@ -1,6 +1,14 @@
 { pkgs, ... }:
 {
   programs.neovix.lenguajes = {
+    "python" = {
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        python
+      ];
+      formateadores = [ "autopep8" ];
+      lsps = [ "basedpyright" ];
+      entornoDeEjecucion = "python";
+    };
     "go" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
         go

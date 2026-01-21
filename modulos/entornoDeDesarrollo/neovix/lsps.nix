@@ -20,6 +20,10 @@
       };
     in
     {
+      "basedpyright" = {
+        paquete = pkgs.basedpyright;
+        configuracion = configuracionDeLspsComun;
+      };
       "gopls" = {
         paquete = pkgs.gopls;
         configuracion = configuracionDeLspsComun // {

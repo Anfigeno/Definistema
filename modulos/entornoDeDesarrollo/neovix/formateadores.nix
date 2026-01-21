@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.neovix.formateadores = {
+    "autopep8".paquete = pkgs.python314Packages.autopep8;
     "gofmt".paquete = pkgs.go;
     "mdformat".paquete = pkgs.mdformat;
     "nixfmt".paquete = pkgs.nixfmt;
