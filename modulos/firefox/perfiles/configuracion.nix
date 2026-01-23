@@ -50,4 +50,7 @@
 
   # Smooth scrolling
   "general.smoothScroll" = true;
+
+  # Pa que funcionen los temas
+  "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 }

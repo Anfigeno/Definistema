@@ -31,6 +31,8 @@ in
           "es-MX"
           "es-ES"
         ];
+        policies.ExtensionSettings =
+          (import ./perfiles/extensiones.nix { inherit pkgs lib; }).configuracionParaPolicies;
       };
   };
 }

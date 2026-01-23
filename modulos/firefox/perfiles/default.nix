@@ -1,58 +1,37 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 let
-  extensiones = import ./extensiones.nix { inherit pkgs; };
   perfilBase = {
-    extensions = extensiones;
+    extensions = (import ./extensiones.nix { inherit pkgs lib; }).configuracionParaPerfiles;
     settings = import ./configuracion.nix;
     search = import ./busqueda;
-  };
-
-  perfilBaseAnonimo = {
-    extensions = extensiones;
-    settings = import ./configuracionAnonima.nix;
+    userChrome = builtins.readFile ./userChrome.css;
   };
 in
-lib.listToAttrs (
-  map
-    (
-      perfil:
-      let
-        perfilAAplicar = if perfil.anonima then perfilBaseAnonimo else perfilBase;
-      in
-      {
-        name = perfil.configuracion.name;
-        value = perfil.configuracion // perfilAAplicar;
-      }
-    )
-    [
-      {
-        anonima = false;
-        configuracion = {
-          name = "Productividad";
-          id = 0;
-          isDefault = true;
-        };
-      }
-      {
-        anonima = false;
-        configuracion = {
-          name = "Defecto";
-          id = 1;
-        };
-      }
-      {
-        anonima = true;
-        configuracion = {
-          name = "Procrastinación";
-          id = 2;
-        };
-      }
-      {
-        anonima = true;
-        configuracion = {
-          name = "Investigación";
-          id = 3;
-        };
-      }
-    ]
-)
+[
+  {
+    name = "Productividad";
+    id = 0;
+    isDefault = true;
+  }
+  {
+    name = "Defecto";
+    id = 1;
+  }
+  {
+    name = "Procrastinación";
+    id = 2;
+  }
+  {
+    name = "Investigación";
+    id = 3;
+  }
+]
+|> map (perfil: {
+  name = perfil.name;
+  value = perfil // perfilBase;
+})
+|> lib.listToAttrs
