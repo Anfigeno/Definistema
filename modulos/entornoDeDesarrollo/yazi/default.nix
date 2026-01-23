@@ -26,7 +26,32 @@ in
         mgr = {
           show_hidden = true;
           sort_dir_first = true;
+          ratio = [
+            2
+            3
+            4
+          ];
         };
+        opener = {
+          play = [
+            {
+              run = ''${pkgs.vlc}/bin/vlc "$@"'';
+              orphan = true;
+            }
+          ];
+          image = [
+            {
+              run = ''${pkgs.kdePackages.gwenview}/bin/gwenview "$@"'';
+              orphan = true;
+            }
+          ];
+        };
+        open.rules = [
+          {
+            mime = "image/*";
+            use = "image";
+          }
+        ];
       };
       extraPackages = with pkgs; [
         wl-clipboard

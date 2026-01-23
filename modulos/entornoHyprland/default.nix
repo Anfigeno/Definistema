@@ -31,14 +31,12 @@ in
         hyprland.activar = true;
         mouse.activar = true;
       };
-    };
 
-    home-manager.users.${usuario} = {
-      home.packages = with pkgs; [
+      paquetes = with pkgs; [
         nautilus
-        feh
         amberol
-        totem
+        vlc
+        kdePackages.gwenview
       ];
     };
   };
