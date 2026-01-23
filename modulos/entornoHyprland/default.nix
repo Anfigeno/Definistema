@@ -11,6 +11,7 @@ in
 {
   imports = [
     ./hyprland
+    ./mouse
   ];
 
   options.definistema.entornoHyprland = {
@@ -28,6 +29,7 @@ in
 
       entornoHyprland = {
         hyprland.activar = true;
+        mouse.activar = true;
       };
     };
 
