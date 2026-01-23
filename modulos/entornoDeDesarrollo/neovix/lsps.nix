@@ -20,6 +20,10 @@
       };
     in
     {
+      "cssls" = {
+        paquete = pkgs.vscode-css-languageserver;
+        configuracion = configuracionDeLspsComun;
+      };
       "fish_lsp" = {
         paquete = pkgs.fish-lsp;
         configuracion = configuracionDeLspsComun;

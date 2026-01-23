@@ -1,6 +1,14 @@
 { pkgs, ... }:
 {
   programs.neovix.lenguajes = {
+    "css" = {
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        css
+        scss
+      ];
+      lsps = [ "cssls" ];
+      formateadores = [ "prettierd" ];
+    };
     "bash".gramaticas = [ pkgs.vimPlugins.nvim-treesitter-parsers.bash ];
     "fish" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
