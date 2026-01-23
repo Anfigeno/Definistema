@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./smooth-resize
     ./tiny-inline-diagnostics
     ./todo-comments
     ./trouble
