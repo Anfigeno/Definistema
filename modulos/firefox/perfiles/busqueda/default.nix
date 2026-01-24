@@ -4,6 +4,6 @@ let
 in
 {
   engines = motoresDeBusqueda;
-  default = motoresDeBusqueda.Google.name;
+  default = motoresDeBusqueda.google.name |> lib.toLower;
   force = true;
 }

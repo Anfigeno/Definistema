@@ -1,20 +1,14 @@
 { lib, ... }:
-let
-  configuraciones = map (ruta: import ruta) [
-    ./homeManagerSearch
-    ./nixosSearch
-    ./googleAi
-    ./google
-    ./youtube
-  ];
-
-  reconfiguraciones = map (
-    configuracion: configuracion // { definedAliases = [ "@${configuracion.name}" ]; }
-  ) configuraciones;
-in
-lib.listToAttrs (
-  map (configuracion: {
-    name = configuracion.name;
-    value = configuracion;
-  }) reconfiguraciones
-)
+[
+  ./google.nix
+  ./youtube.nix
+  ./googleAi.nix
+  ./nixosSearch.nix
+  ./homeManagerSearch.nix
+]
+|> map (ruta: import ruta)
+|> map (motor: {
+  name = motor.name |> lib.toLower;
+  value = motor;
+})
+|> lib.listToAttrs

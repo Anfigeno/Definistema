@@ -1,8 +1,6 @@
 {
   usuario,
   lib,
-  inputs,
-  pkgs,
   config,
   ...
 }:
@@ -13,29 +11,30 @@ in
 {
   config = lib.mkIf activar {
     home-manager.users.${usuario} =
-      let
-        perfiles = import ../../perfiles { inherit lib inputs pkgs; };
-      in
+      { config, ... }:
       {
-        xdg.desktopEntries = builtins.listToAttrs (
-          map (clave: {
-            name = "firefox-${clave}";
-            value = {
-              name = "Firefox ${clave}";
-              genericName = "Navegador Web";
-              exec = "firefox -p ${clave}";
-              terminal = false;
-              categories = [
-                "Network"
-                "WebBrowser"
-              ];
-              mimeType = [
-                "text/html"
-                "text/xml"
-              ];
-            };
-          }) (builtins.attrNames perfiles)
-        );
+        xdg.desktopEntries =
+          config.programs.firefox.profiles
+          |> lib.mapAttrsToList (
+            clave: _: {
+              name = "firefox-${clave}";
+              value = {
+                name = "Firefox ${clave}";
+                genericName = "Navegador Web";
+                exec = "firefox -p ${clave}";
+                terminal = false;
+                categories = [
+                  "Network"
+                  "WebBrowser"
+                ];
+                mimeType = [
+                  "text/html"
+                  "text/xml"
+                ];
+              };
+            }
+          )
+          |> builtins.listToAttrs;
       };
   };
 }
