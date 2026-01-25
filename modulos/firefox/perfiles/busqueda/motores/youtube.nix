@@ -13,5 +13,4 @@
   ];
 
   iconMapObj."16" = "https://www.youtube.com/favicon.ico";
-  definedAliases = [ "@youtube" ];
 }

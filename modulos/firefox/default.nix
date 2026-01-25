@@ -21,7 +21,7 @@ in
   config = lib.mkIf cfg.firefox.activar {
     home-manager.users.${usuario}.programs.firefox =
       let
-        perfiles = import ./perfiles { inherit lib inputs pkgs; };
+        perfiles = import ./perfiles { inherit lib pkgs; };
       in
       {
         enable = true;

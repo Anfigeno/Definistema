@@ -9,6 +9,8 @@
 |> map (ruta: import ruta)
 |> map (motor: {
   name = motor.name |> lib.toLower;
-  value = motor;
+  value = motor // {
+    definedAliases = [ ''@${motor.name |> lib.toLower}'' ];
+  };
 })
 |> lib.listToAttrs
