@@ -20,6 +20,10 @@
       };
     in
     {
+      "nushell" = {
+        paquete = pkgs.nushell;
+        configuracion = configuracionDeLspsComun;
+      };
       "cssls" = {
         paquete = pkgs.vscode-css-languageserver;
         configuracion = configuracionDeLspsComun;

@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   programs.neovix.lenguajes = {
+    "nu" = {
+      gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [ nu ];
+      lsps = [ "nushell" ];
+      formateadores = [ "nufmt" ];
+    };
     "css" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
         css
