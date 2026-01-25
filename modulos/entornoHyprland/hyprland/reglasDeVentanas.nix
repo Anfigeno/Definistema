@@ -3,10 +3,10 @@ let
   cfg = config.definistema;
 
   ventanasTransparentes = [
-    {
-      clase = "kitty";
-      condicion = cfg.kitty.activar;
-    }
+    # {
+    #   clase = "kitty";
+    #   condicion = cfg.kitty.activar;
+    # }
     {
       clase = "Neovim";
       condicion = cfg.entornoDeDesarrollo.neovix.activar;
