@@ -60,6 +60,7 @@ in
 
           allow_remote_control = true;
           box_drawing_scale = "0.001, 0.1, 1.5, 2";
+          scrollbar_width = 0;
         };
       };
     };
