@@ -25,9 +25,13 @@
         accion = /* lua */ ''require("telescope.builtin").find_files()'';
         descripcion = "Telescope: Encontrar archivos";
       };
-      "<space>fg" = {
+      "<space>fG" = {
         accion = /* lua */ ''require("telescope.builtin").live_grep()'';
         descripcion = "Telescope: Grep";
+      };
+      "<space>fgs" = {
+        accion = /* lua */ ''require("telescope.builtin").git_status()'';
+        descripcion = "Telescope: Estado de git";
       };
       "<space>fs" = {
         accion = /* lua */ ''require("telescope.builtin").lsp_document_symbols()'';

@@ -113,6 +113,7 @@
       ];
       formateadores = [ "stylua" ];
       lsps = [ "lua_ls" ];
+      entornoDeEjecucion = "lua";
     };
     "json" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [

@@ -1,6 +1,10 @@
 { pkgs, ... }:
 {
   programs.neovix.entornosDeEjecucion = {
+    "lua" = {
+      paquete = pkgs.lua;
+      configuracionDeCodeRunner = "lua";
+    };
     "fish" = {
       paquete = pkgs.fish;
       configuracionDeCodeRunner = "fish";
