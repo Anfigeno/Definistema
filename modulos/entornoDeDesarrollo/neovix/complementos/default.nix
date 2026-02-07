@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./neotree
     ./lazydev
     ./smooth-resize
     ./tiny-inline-diagnostics
@@ -36,7 +37,7 @@
     ./autopairs
     ./bufferline
     ./cmp
-    ./mestizo
+    ./mestizo256
     ./dashboard
     ./noice
     ./fidget

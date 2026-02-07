@@ -1,22 +1,22 @@
 { pkgs, lib, ... }:
 {
-  programs.neovix.complementos."LSP Config".dependencias = with pkgs.vimPlugins; [
-    cmp-nvim-lsp
-    nvim-navic
-  ];
+  # programs.neovix.complementos."LSP Config".dependencias = with pkgs.vimPlugins; [
+  #   cmp-nvim-lsp
+  #   nvim-navic
+  # ];
 
   programs.neovix.lsps =
     let
       inherit (lib.generators) mkLuaInline;
 
       configuracionDeLspsComun = {
-        capabilities = mkLuaInline /* lua */ ''require("cmp_nvim_lsp").default_capabilities()'';
-        on_attach = mkLuaInline /* lua */ ''
-          function(client, bufnr)
-            if client.server_capabilities.documentSymbolProvider then
-              require("nvim-navic").attach(client, bufnr)
-            end
-          end'';
+        # capabilities = mkLuaInline /* lua */ ''require("cmp_nvim_lsp").default_capabilities()'';
+        # on_attach = mkLuaInline /* lua */ ''
+        #   function(client, bufnr)
+        #     if client.server_capabilities.documentSymbolProvider then
+        #       require("nvim-navic").attach(client, bufnr)
+        #     end
+        #   end'';
       };
     in
     {

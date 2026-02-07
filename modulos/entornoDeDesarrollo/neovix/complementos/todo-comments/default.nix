@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.neovix.complementos."Todo Comments" = {
+    activar = false;
     paquete = pkgs.vimPlugins.todo-comments-nvim;
     dependencias = with pkgs.vimPlugins; [ plenary-nvim ];
     configuracion = /* lua */ ''

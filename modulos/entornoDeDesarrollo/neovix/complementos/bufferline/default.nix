@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.neovix.complementos."Bufferline" = {
     paquete = pkgs.vimPlugins.bufferline-nvim;
@@ -7,17 +7,21 @@
       require("scope").setup({})
 
       require("bufferline").setup({
-        highlights = require("mestizo.claves.integraciones.especial.bufferline"),
         options = {
-          offsets = {
-            {
-              filetype = "fyler",
-              text = "Archivos",
-              highlight = "Normal",
-              text_align = "center",
-              separator = true,
-            },
-          },
+          offsets = ${
+            [
+              "fyler"
+              "neo-tree"
+            ]
+            |> map (tda: {
+              filetype = tda;
+              text = "Archivos";
+              highlight = "NeoTreeNormal";
+              text_align = "center";
+              separator = false;
+            })
+            |> lib.generators.toLua { }
+          }
         },
       })
     '';

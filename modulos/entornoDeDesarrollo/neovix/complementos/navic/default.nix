@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.neovix.complementos."Navic" = {
+    activar = false;
     paquete = pkgs.vimPlugins.nvim-navic;
     configuracion = /* lua */ ''
       require("nvim-navic").setup({

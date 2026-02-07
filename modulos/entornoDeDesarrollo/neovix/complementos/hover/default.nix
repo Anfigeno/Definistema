@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.neovix.complementos."Hover" = {
+    activar = false;
     paquete = pkgs.vimPlugins.hover-nvim;
     configuracion = /* lua */ ''
       require("hover").config({

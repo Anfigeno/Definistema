@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.neovix.complementos."Fyler" = {
+    activar = false;
     paquete = pkgs.vimPlugins.fyler-nvim;
     dependencias = with pkgs.vimPlugins; [ mini-icons ];
     configuracion = /* lua */ ''

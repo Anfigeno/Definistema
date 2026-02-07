@@ -1,6 +1,7 @@
 { pkgs, config, ... }:
 {
   programs.neovix.complementos."Lualine" = {
+    activar = false;
     paquete = pkgs.vimPlugins.lualine-nvim;
     dependencias = with pkgs.vimPlugins; [
       mini-icons
