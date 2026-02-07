@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./blink
     ./neotree
     ./lazydev
     ./smooth-resize

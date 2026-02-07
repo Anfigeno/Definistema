@@ -19,7 +19,10 @@
   end, {})
 
   vim.keymap.set("n", "<c-s>", "<cmd>w<cr>")
+
+  vim.o.winborder = "rounded"
 ''
+
 + (
   [
     "Error"
