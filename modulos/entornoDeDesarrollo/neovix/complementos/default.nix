@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./mini-statusline
     ./blink
     ./neotree
     ./lazydev
