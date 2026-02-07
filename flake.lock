@@ -78,6 +78,26 @@
         "type": "github"
       }
     },
+    "mestizo256nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770489539,
+        "narHash": "sha256-BotqBVJK3gFOd5jdvEyc07rFcmr1GUOi9clgwesilDc=",
+        "ref": "refs/heads/main",
+        "rev": "e5c82ee2bf42403cceb0b3b2a56d1011493be72f",
+        "revCount": 9,
+        "type": "git",
+        "url": "file:///home/anfitrion/Codigo/Nix/Mestizo256Nix"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/anfitrion/Codigo/Nix/Mestizo256Nix"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1766902085,
@@ -100,6 +120,7 @@
         "fondos-de-pantalla": "fondos-de-pantalla",
         "home-manager": "home-manager",
         "mestizo-nix": "mestizo-nix",
+        "mestizo256nix": "mestizo256nix",
         "nixpkgs": "nixpkgs"
       }
     }

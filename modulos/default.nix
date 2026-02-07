@@ -16,5 +16,6 @@
     ./virtualbox
     ./steam
     ./obs
+    ./mestizo256nix
   ];
 }

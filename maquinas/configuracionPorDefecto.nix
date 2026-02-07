@@ -20,6 +20,7 @@
     backupFileExtension = "respaldo-hm";
     sharedModules = [
       ../modulosHomeManager/neovix
+      inputs.mestizo256nix.homeManagerModules.default
     ];
   };
 

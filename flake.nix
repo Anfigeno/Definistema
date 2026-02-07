@@ -20,6 +20,11 @@
     };
 
     fondos-de-pantalla.url = "github:Anfigeno/Fondos-de-pantalla";
+
+    mestizo256nix = {
+      url = "git+file:///home/anfitrion/Codigo/Nix/Mestizo256Nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

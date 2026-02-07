@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./lazydev
     ./smooth-resize
     ./tiny-inline-diagnostics
     ./todo-comments

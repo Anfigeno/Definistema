@@ -13,6 +13,7 @@
     discord.activar = true;
     steam.activar = true;
     obs.activar = true;
+    mestizo256nix.activar = true;
 
     paquetes = with pkgs; [
       prismlauncher
