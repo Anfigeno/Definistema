@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./reactive
     ./mini-statusline
     ./blink
     ./neotree
