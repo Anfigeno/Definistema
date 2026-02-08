@@ -1,100 +1,61 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
-  # programs.neovix.complementos."LSP Config".dependencias = with pkgs.vimPlugins; [
-  #   cmp-nvim-lsp
-  #   nvim-navic
-  # ];
+  programs.neovix.lsps = {
+    "nixd".paquete = pkgs.nixd;
+    "nil_ls".paquete = pkgs.nil;
+    "markdown_oxide".paquete = pkgs.markdown-oxide;
+    "solargraph".paquete = pkgs.solargraph;
+    "biome".paquete = pkgs.biome;
+    "nushell".paquete = pkgs.nushell;
+    "cssls".paquete = pkgs.vscode-css-languageserver;
+    "fish_lsp".paquete = pkgs.fish-lsp;
+    "basedpyright".paquete = pkgs.basedpyright;
 
-  programs.neovix.lsps =
-    let
-      inherit (lib.generators) mkLuaInline;
-
-      configuracionDeLspsComun = {
-        # capabilities = mkLuaInline /* lua */ ''require("cmp_nvim_lsp").default_capabilities()'';
-        # on_attach = mkLuaInline /* lua */ ''
-        #   function(client, bufnr)
-        #     if client.server_capabilities.documentSymbolProvider then
-        #       require("nvim-navic").attach(client, bufnr)
-        #     end
-        #   end'';
-      };
-    in
-    {
-      "nushell" = {
-        paquete = pkgs.nushell;
-        configuracion = configuracionDeLspsComun;
-      };
-      "cssls" = {
-        paquete = pkgs.vscode-css-languageserver;
-        configuracion = configuracionDeLspsComun;
-      };
-      "fish_lsp" = {
-        paquete = pkgs.fish-lsp;
-        configuracion = configuracionDeLspsComun;
-      };
-      "basedpyright" = {
-        paquete = pkgs.basedpyright;
-        configuracion = configuracionDeLspsComun;
-      };
-      "gopls" = {
-        paquete = pkgs.gopls;
-        configuracion = configuracionDeLspsComun // {
-          settings.gopls."ui.inlayhint.hints" = {
-            assignVariableTypes = true;
-            compositeLiteralFields = true;
-            compositeLiteralTypes = true;
-            constantValues = true;
-            functionTypeParameters = true;
-            parameterNames = true;
-            rangeVariableTypes = true;
-          };
+    "gopls" = {
+      paquete = pkgs.gopls;
+      configuracion = {
+        settings.gopls."ui.inlayhint.hints" = {
+          assignVariableTypes = true;
+          compositeLiteralFields = true;
+          compositeLiteralTypes = true;
+          constantValues = true;
+          functionTypeParameters = true;
+          parameterNames = true;
+          rangeVariableTypes = true;
         };
-      };
-      "nixd" = {
-        paquete = pkgs.nixd;
-        configuracion = configuracionDeLspsComun;
-      };
-      "nil_ls".paquete = pkgs.nil;
-      "ts_ls" = {
-        paquete = pkgs.typescript-language-server;
-        configuracion = configuracionDeLspsComun // {
-          settings = {
-            javascript.inlayHints = {
-              includeInlayEnumMemberValueHints = true;
-              includeInlayFunctionLikeReturnTypeHints = true;
-              includeInlayFunctionParameterTypeHints = true;
-              includeInlayParameterNameHints = "all";
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-              includeInlayPropertyDeclarationTypeHints = true;
-              includeInlayVariableTypeHints = true;
-            };
-            typescript.inlayHints = {
-              includeInlayEnumMemberValueHints = true;
-              includeInlayFunctionLikeReturnTypeHints = true;
-              includeInlayFunctionParameterTypeHints = true;
-              includeInlayParameterNameHints = "all";
-              includeInlayParameterNameHintsWhenArgumentMatchesName = true;
-              includeInlayPropertyDeclarationTypeHints = true;
-              includeInlayVariableTypeHints = true;
-            };
-          };
-        };
-      };
-      "biome".paquete = pkgs.biome;
-      "lua_ls" = {
-        paquete = pkgs.lua-language-server;
-        configuracion = configuracionDeLspsComun // {
-          settings.Lua.hint.enable = true;
-          setType = true;
-        };
-      };
-      "markdown_oxide" = {
-        paquete = pkgs.markdown-oxide;
-        configuracion = configuracionDeLspsComun;
-      };
-      "solargraph" = {
-        paquete = pkgs.solargraph;
-        configuracion = configuracionDeLspsComun;
       };
     };
+    "ts_ls" = {
+      paquete = pkgs.typescript-language-server;
+      configuracion = {
+        settings = {
+          javascript.inlayHints = {
+            includeInlayEnumMemberValueHints = true;
+            includeInlayFunctionLikeReturnTypeHints = true;
+            includeInlayFunctionParameterTypeHints = true;
+            includeInlayParameterNameHints = "all";
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+            includeInlayPropertyDeclarationTypeHints = true;
+            includeInlayVariableTypeHints = true;
+          };
+          typescript.inlayHints = {
+            includeInlayEnumMemberValueHints = true;
+            includeInlayFunctionLikeReturnTypeHints = true;
+            includeInlayFunctionParameterTypeHints = true;
+            includeInlayParameterNameHints = "all";
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true;
+            includeInlayPropertyDeclarationTypeHints = true;
+            includeInlayVariableTypeHints = true;
+          };
+        };
+      };
+    };
+    "lua_ls" = {
+      paquete = pkgs.lua-language-server;
+      configuracion = {
+        settings.Lua.hint.enable = true;
+        setType = true;
+      };
+    };
+  };
 }
