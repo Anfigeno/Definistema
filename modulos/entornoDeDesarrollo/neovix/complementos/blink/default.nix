@@ -6,7 +6,7 @@
       friendly-snippets
     ];
     configuracion = /* lua */ ''
-      require("blink.cmp").setup(require("mestizo256").integraciones_especiales.blink({
+      require("blink.cmp").setup(require("mestizo256.integraciones_especiales.blink").obtener({
         keymap = { preset = "default" },
         appearance = { nerd_font_variant = "mono" },
         completion = { documentation = { auto_show = true } },

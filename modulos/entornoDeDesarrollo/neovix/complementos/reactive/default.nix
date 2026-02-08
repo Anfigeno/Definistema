@@ -10,7 +10,9 @@ in
       repo = "rasulomaroff/reactive.nvim";
     };
     configuracion = /* lua */ ''
-      require("reactive").add_preset(require("mestizo256").integraciones_especiales.reactive)
+      require("reactive").setup({
+        load = "mestizo256"
+      })
     '';
     lazy.activar = false;
   };

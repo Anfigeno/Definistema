@@ -4,7 +4,7 @@
     paquete = pkgs.vimPlugins.noice-nvim;
     dependencias = with pkgs.vimPlugins; [ nui-nvim ];
     configuracion = /* lua */ ''
-      require("noice").setup(require("mestizo256.integraciones_especiales.noice")({
+      require("noice").setup(require("mestizo256.integraciones_especiales.noice").obtener({
         lsp = {
           signature = { enabled = true },
           hover = { enabled = true },

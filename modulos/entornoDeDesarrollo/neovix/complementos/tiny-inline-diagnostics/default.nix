@@ -12,7 +12,7 @@
       })
 
       vim.diagnostic.config({ virtual_text = false })
-      require("mestizo256.integraciones_especiales.tiny-inline-diagnostics")()
+      require("mestizo256.integraciones_especiales.tiny-inline-diagnostics").obtener()
     '';
     lazy.eventos = [ "VeryLazy" ];
   };
