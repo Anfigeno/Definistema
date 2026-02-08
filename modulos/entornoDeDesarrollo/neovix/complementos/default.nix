@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./supermaven
     ./hlchunk
     ./reactive
     ./mini-statusline
