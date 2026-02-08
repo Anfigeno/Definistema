@@ -6,8 +6,8 @@
       require("tiny-inline-diagnostic").setup({
         options = {
           show_source = { enabled = true },
-          add_messages = { display_count = true },
-          multilines = { enabled = true },
+          multilines = { enabled = true, always_show = true },
+          use_icons_from_diagnostic = true,
         },
       })
 
