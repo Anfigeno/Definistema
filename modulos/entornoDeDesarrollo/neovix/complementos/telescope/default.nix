@@ -25,6 +25,10 @@
         accion = /* lua */ ''require("telescope.builtin").find_files()'';
         descripcion = "Telescope: Encontrar archivos";
       };
+      "<space>fg" = {
+        accion = /* lua */ ''require("telescope.builtin").git_files()'';
+        descripcion = "Telescope: Encontrar archivos de git";
+      };
       "<space>fG" = {
         accion = /* lua */ ''require("telescope.builtin").live_grep()'';
         descripcion = "Telescope: Grep";
