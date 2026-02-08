@@ -18,14 +18,14 @@
               vim.cmd("Neotree close")
             end
           },
-        }
+        },
       }
     '';
     lazy = {
       activar = false;
       teclas = {
         "<C-n>" = {
-          comando = /* vim */ "<cmd>Neotree toggle<cr>";
+          comando = /* vim */ "<cmd>Neotree reveal toggle<cr>";
           descripcion = "Neo Tree: Alternar explorador";
         };
       };
