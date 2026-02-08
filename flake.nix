@@ -50,8 +50,9 @@
       ];
     in
     {
-      nixosConfigurations = builtins.listToAttrs (
-        map (maquina: {
+      nixosConfigurations =
+        maquinas
+        |> map (maquina: {
           name = maquina;
           value = nixpkgs.lib.nixosSystem {
             specialArgs = {
@@ -67,8 +68,8 @@
               ./maquinas/configuracionPorDefecto.nix
             ];
           };
-        }) maquinas
-      );
+        })
+        |> builtins.listToAttrs;
 
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = with pkgs; [
