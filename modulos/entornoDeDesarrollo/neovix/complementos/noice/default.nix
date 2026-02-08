@@ -14,6 +14,10 @@
             ["cmp.entry.get_documentation"] = true,
           },
         },
+        presets = {
+          bottom_search = false,
+          inc_rename = true,
+        },
       }))
     '';
     lazy.eventos = [ "VeryLazy" ];

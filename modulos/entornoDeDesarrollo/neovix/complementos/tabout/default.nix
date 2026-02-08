@@ -4,8 +4,8 @@
     paquete = pkgs.vimPlugins.tabout-nvim;
     configuracion = /* lua */ ''
       require("tabout").setup({
-        tabkey = "<c-l>",
-        backwards_tabkey = "<c-h>",
+        tabkey = "<Tab>",
+        backwards_tabkey = "<s-Tab>",
       })
     '';
     lazy.eventos = [ "InsertEnter" ];
