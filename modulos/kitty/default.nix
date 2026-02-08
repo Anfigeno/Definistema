@@ -31,9 +31,9 @@ in
           shell = "${pkgs.fish}/bin/fish";
 
           disable_ligatures = "never";
-          font_size = 10.5;
+          font_size = 11;
           modify_font = ''
-            cell_height 6px
+            cell_height 10px
           '';
 
           window_padding_width = 0;
