@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./hlchunk
     ./reactive
     ./mini-statusline
     ./blink
