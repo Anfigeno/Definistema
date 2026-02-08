@@ -1,20 +1,24 @@
 { pkgs, ... }:
 {
   programs.neovix.complementos."Hover" = {
-    activar = false;
+    # activar = false;
     paquete = pkgs.vimPlugins.hover-nvim;
     configuracion = /* lua */ ''
       require("hover").config({
-        init = function()
-          require("hover.providers.lsp")
-          require("hover.providers.gh")
-          require("hover.providers.gh_user")
-          require("hover.providers.fold_preview")
-          require("hover.providers.diagnostic")
-          require("hover.providers.dictionary")
-        end,
+        providers = {
+          'hover.providers.diagnostic',
+          'hover.providers.lsp',
+          'hover.providers.gh',
+          'hover.providers.fold_preview',
+          'hover.providers.highlight',
+          -- 'hover.providers.dictionary',
+          -- 'hover.providers.dap',
+          -- 'hover.providers.man',
+          -- 'hover.providers.gh_user',
+          -- 'hover.providers.jira',
+        },
         preview_opts = {
-          border = "single",
+          border = "rounded",
         },
         preview_window = false,
         title = true,
