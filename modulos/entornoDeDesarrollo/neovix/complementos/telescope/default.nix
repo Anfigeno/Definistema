@@ -2,7 +2,10 @@
 {
   programs.neovix.complementos."Telescope" = {
     paquete = pkgs.vimPlugins.telescope-nvim;
-    dependencias = with pkgs.vimPlugins; [ plenary-nvim ];
+    dependencias = with pkgs.vimPlugins; [
+      plenary-nvim
+      nvim-treesitter
+    ];
     dependenciasDeSistema = [ pkgs.ripgrep ];
     configuracion = /* lua */ ''
       require("telescope").setup({
@@ -44,6 +47,10 @@
       "<space>fr" = {
         accion = /* lua */ ''require("telescope.builtin").lsp_references()'';
         descripcion = "Telescope: Encontrar referencias";
+      };
+      "<space>fh" = {
+        accion = /* lua */ ''require("telescope.builtin").highlights()'';
+        descripcion = "Telescope: Resaltados";
       };
     };
   };
