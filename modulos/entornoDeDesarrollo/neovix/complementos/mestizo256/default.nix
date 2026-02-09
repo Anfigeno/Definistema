@@ -5,7 +5,7 @@ in
 {
   programs.neovix.complementos."Mestizo 256" = {
     paquete = deGithub {
-      rev = "332ad7be30dfbb50c783ce665aeb87819bca61f4";
+      rev = "8dcc9868653a360c3265e1868404e7e1e9be96d2";
       ref = "main";
       repo = "TemaMestizo/Mestizo256.nvim";
     };

@@ -2,7 +2,10 @@
 {
   programs.neovix.complementos."Bufferline" = {
     paquete = pkgs.vimPlugins.bufferline-nvim;
-    dependencias = with pkgs.vimPlugins; [ scope-nvim ];
+    dependencias = with pkgs.vimPlugins; [
+      scope-nvim
+      mini-icons
+    ];
     configuracion = /* lua */ ''
       require("scope").setup({})
 
