@@ -12,7 +12,7 @@ in
 {
   imports = [
     ./configuracionDeTreesitter.nix
-    ./configuracionDeNeoformat.nix
+    ./configuracionDeConform.nix
     ./configuracionDeLSPConfig.nix
     ./configuracionDeCodeRunner.nix
   ];
@@ -274,7 +274,7 @@ in
               configuracion = mkOption {
                 type = types.nullOr (types.attrsOf types.anything);
                 default = null;
-                description = "Configuración del formateador (https://github.com/sbdchd/neoformat)";
+                description = "Configuración del formateador (https://github.com/stevearc/conform.nvim)";
               };
             };
           }
