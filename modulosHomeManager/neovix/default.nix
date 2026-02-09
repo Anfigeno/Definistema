@@ -283,25 +283,37 @@ in
       default = null;
       description = "Configuración de formateadores";
     };
-    lsps = mkOption {
-      type = types.attrsOf (
-        types.submodule {
-          options = {
-            paquete = mkOption {
-              type = with types; nullOr package;
-              default = null;
-              description = "Paquete del LSP del lenguaje";
+    lspconfig = {
+      dependencias = mkOption {
+        type = types.listOf types.package;
+        default = [ ];
+        description = "Complementos dependientes";
+      };
+      configuracionComun = mkOption {
+        type = types.attrsOf types.anything;
+        default = { };
+        description = "Configuración común de LSP";
+      };
+      configuraciones = mkOption {
+        type = types.attrsOf (
+          types.submodule {
+            options = {
+              paquete = mkOption {
+                type = with types; nullOr package;
+                default = null;
+                description = "Paquete del LSP del lenguaje";
+              };
+              configuracion = mkOption {
+                type = with types; nullOr (attrsOf anything);
+                default = null;
+                description = "Configuración del LSP del lenguaje";
+              };
             };
-            configuracion = mkOption {
-              type = with types; nullOr (attrsOf anything);
-              default = null;
-              description = "Configuración del LSP del lenguaje";
-            };
-          };
-        }
-      );
-      default = { };
-      description = "Configuración del LSPs";
+          }
+        );
+        default = { };
+        description = "Configuración del LSPs";
+      };
     };
     entornosDeEjecucion = mkOption {
       type = types.attrsOf (
@@ -342,7 +354,7 @@ in
               description = "Formateadores activos para este lenguaje";
             };
             lsps = mkOption {
-              type = with types; nullOr (listOf (enum (builtins.attrNames cfg.lsps)));
+              type = with types; nullOr (listOf (enum (builtins.attrNames cfg.lspconfig.configuraciones)));
               default = null;
               description = "LSPs activos para este lenguaje";
             };

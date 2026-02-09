@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.neovix.complementos."Blink" = {
     paquete = pkgs.vimPlugins.blink-cmp;
@@ -19,5 +19,12 @@
       "CmdlineEnter"
       "InsertEnter"
     ];
+  };
+
+  programs.neovix.lspconfig = {
+    dependencias = [ pkgs.vimPlugins.blink-cmp ];
+    configuracionComun = {
+      capabilities = lib.generators.mkLuaInline /* lua */ ''require("blink-cmp").get_lsp_capabilities()'';
+    };
   };
 }

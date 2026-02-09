@@ -24,11 +24,11 @@ let
     # Ahora tenemos los nombres de los LSP en uso
     |> (
       x:
-      cfg.lsps
+      cfg.lspconfig.configuraciones
       |> lib.mapAttrsToList (clave: lsp: if !(builtins.elem clave x) then clave else null)
       |> builtins.filter (x: x != null)
     )
-    |> removeAttrs cfg.lsps;
+    |> removeAttrs cfg.lspconfig.configuraciones;
 in
 lib.mkIf (cfg.activar && lenguajesActivadosYConLsps != { }) {
   home.packages =
@@ -36,6 +36,7 @@ lib.mkIf (cfg.activar && lenguajesActivadosYConLsps != { }) {
 
   programs.neovix.complementos."LSP Config" = {
     paquete = pkgs.vimPlugins.nvim-lspconfig;
+    dependencias = cfg.lspconfig.dependencias;
     configuracion = # lua
       let
         configuracionesDeLsp =
@@ -45,7 +46,9 @@ lib.mkIf (cfg.activar && lenguajesActivadosYConLsps != { }) {
             if lsp.configuracion == null then
               null
             else
-              /* lua */ ''vim.lsp.config("${clave}", ${lsp.configuracion |> lib.generators.toLua { }}) ''
+              /* lua */ ''vim.lsp.config("${clave}", ${
+                (lsp.configuracion // cfg.lspconfig.configuracionComun) |> lib.generators.toLua { }
+              }) ''
           )
           |> builtins.filter (x: x != null)
           |> builtins.concatStringsSep "\n";
