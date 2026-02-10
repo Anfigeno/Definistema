@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./lsp-file-operations
     ./supermaven
     ./hlchunk
     ./reactive

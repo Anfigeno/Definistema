@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  programs.neovix.complementos."LSP File Operations".dependencias = [ pkgs.vimPlugins.neo-tree-nvim ];
   programs.neovix.complementos."Neo Tree" = {
     paquete = pkgs.vimPlugins.neo-tree-nvim;
     dependencias = with pkgs.vimPlugins; [
