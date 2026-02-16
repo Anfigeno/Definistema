@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./obsidian
     ./lsp-file-operations
     ./supermaven
     ./hlchunk

@@ -38,7 +38,7 @@
   "network.http.pipelining" = true;
 
   # UX
-  "browser.download.useDownloadDir" = true;
+  "browser.download.useDownloadDir" = false;
   "browser.download.autohideButton" = false;
   "browser.startup.page" = 3; # Restaurar sesión anterior
   "browser.tabs.closeWindowWithLastTab" = false;
