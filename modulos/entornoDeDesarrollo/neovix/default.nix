@@ -12,6 +12,10 @@ in
   imports = [
     ./integraciones
     ./complementos
+    ./lsps.nix
+    ./lenguajes.nix
+    ./formateadores.nix
+    ./entornosDeEjecucion.nix
   ];
 
   options.definistema.entornoDeDesarrollo.neovix = {

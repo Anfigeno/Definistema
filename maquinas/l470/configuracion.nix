@@ -9,7 +9,6 @@
 
     firefox.activar = true;
     kitty.activar = true;
-    virtualbox.activar = true;
     discord.activar = true;
     steam.activar = true;
     obs.activar = true;
@@ -17,6 +16,7 @@
 
     paquetes = with pkgs; [
       prismlauncher
+      stoat-desktop
     ];
   };
 
