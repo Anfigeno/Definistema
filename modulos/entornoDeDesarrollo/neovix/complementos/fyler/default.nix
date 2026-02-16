@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Fyler" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Fyler" = {
     activar = false;
     paquete = pkgs.vimPlugins.fyler-nvim;
     dependencias = with pkgs.vimPlugins; [ mini-icons ];

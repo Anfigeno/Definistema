@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Todo Comments" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Todo Comments" = {
     activar = false;
     paquete = pkgs.vimPlugins.todo-comments-nvim;
     dependencias = with pkgs.vimPlugins; [ plenary-nvim ];

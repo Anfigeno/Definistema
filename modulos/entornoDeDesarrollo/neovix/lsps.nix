@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.lspconfig = {
+  home-manager.users.${usuario}.programs.neovix.lspconfig = {
     configuraciones = {
       "nixd".paquete = pkgs.nixd;
       "nil_ls".paquete = pkgs.nil;

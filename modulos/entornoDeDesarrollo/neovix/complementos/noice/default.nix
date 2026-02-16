@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Noice" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Noice" = {
     paquete = pkgs.vimPlugins.noice-nvim;
     dependencias = with pkgs.vimPlugins; [ nui-nvim ];
     configuracion = /* lua */ ''

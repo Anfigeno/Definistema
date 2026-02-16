@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Dashboard" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Dashboard" = {
     paquete = pkgs.vimPlugins.dashboard-nvim;
     configuracion = /* lua */ ''
       require("dashboard").setup(require("mestizo256.integraciones_especiales.dashboard").obtener({

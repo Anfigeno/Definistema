@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Rest" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Rest" = {
     paquete = pkgs.vimPlugins.rest-nvim;
     dependencias = with pkgs.vimPlugins; [
       plenary-nvim
@@ -9,7 +9,10 @@
       nvim-nio
     ];
     dependenciasDeSistema = with pkgs; [ curl ];
-    dependenciasDeLua = [ "mimetypes" "xml2lua" ];
+    dependenciasDeLua = [
+      "mimetypes"
+      "xml2lua"
+    ];
     configuracion = /* lua */ ''require("telescope").load_extension("rest")'';
     lazy = {
       tiposDeArchivo = [ "http" ];

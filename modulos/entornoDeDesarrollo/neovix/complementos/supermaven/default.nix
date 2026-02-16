@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Supermaven" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Supermaven" = {
     paquete = pkgs.vimPlugins.supermaven-nvim;
     configuracion = /* lua */ ''
       require("supermaven-nvim").setup({

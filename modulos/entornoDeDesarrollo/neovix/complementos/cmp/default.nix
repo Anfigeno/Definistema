@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."CMP" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."CMP" = {
     activar = false;
     paquete = pkgs.vimPlugins.nvim-cmp;
     dependencias = with pkgs.vimPlugins; [

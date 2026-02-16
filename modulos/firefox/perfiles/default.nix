@@ -1,29 +1,22 @@
 {
   lib,
   pkgs,
+  perfiles,
   ...
 }:
-let
-  perfilBase = {
-    extensions = (import ./extensiones.nix { inherit pkgs lib; }).configuracionParaPerfiles;
-    settings = import ./configuracion.nix;
-    search = import ./busqueda { inherit lib; };
-    userChrome = builtins.readFile ./userChrome.css;
-  };
-in
-[
-  "Productividad"
-  "Defecto"
-  "Procrastinación"
-  "Investigación"
-]
+perfiles
 |> lib.imap0 (
   i: nombre: {
     name = nombre;
-    value = perfilBase // {
+    value = {
+      id = i;
       name = nombre;
       isDefault = if i == 0 then true else false;
-      id = i;
+
+      extensions = (import ./extensiones.nix { inherit pkgs lib; }).configuracionParaPerfiles;
+      settings = import ./configuracion.nix;
+      search = import ./busqueda { inherit lib; };
+      userChrome = builtins.readFile ./userChrome.css;
     };
   }
 )

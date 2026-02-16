@@ -1,6 +1,11 @@
-{ pkgs, lib, ... }:
 {
-  programs.neovix.complementos."Bufferline" = {
+  pkgs,
+  lib,
+  usuario,
+  ...
+}:
+{
+  home-manager.users.${usuario}.programs.neovix.complementos."Bufferline" = {
     paquete = pkgs.vimPlugins.bufferline-nvim;
     dependencias = with pkgs.vimPlugins; [
       scope-nvim

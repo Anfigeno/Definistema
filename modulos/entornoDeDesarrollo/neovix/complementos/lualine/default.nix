@@ -1,6 +1,11 @@
-{ pkgs, config, ... }:
 {
-  programs.neovix.complementos."Lualine" = {
+  pkgs,
+  config,
+  usuario,
+  ...
+}:
+{
+  home-manager.users.${usuario}.programs.neovix.complementos."Lualine" = {
     activar = false;
     paquete = pkgs.vimPlugins.lualine-nvim;
     dependencias = with pkgs.vimPlugins; [

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Navic" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Navic" = {
     activar = false;
     paquete = pkgs.vimPlugins.nvim-navic;
     configuracion = /* lua */ ''

@@ -1,6 +1,12 @@
-{ pkgs, lib, ... }:
 {
-  programs.neovix.complementos."Obsidian" = {
+  pkgs,
+  perfiles,
+  lib,
+  usuario,
+  ...
+}:
+{
+  home-manager.users.${usuario}.programs.neovix.complementos."Obsidian" = {
     paquete = pkgs.vimPlugins.obsidian-nvim;
     dependencias = with pkgs.vimPlugins; [
       telescope-nvim
@@ -8,14 +14,19 @@
     ];
     configuracion = /* lua */ ''
       require("obsidian").setup({
-        workspaces = {
-          {
-            name = "Defecto",
-            path = "~/Vaul/Defecto"
-          }
+        workspaces = ${
+          perfiles
+          |> map (perfil: {
+            name = perfil;
+            path = "~/Vaul/${perfil}";
+          })
+          |> lib.generators.toLua { }
         }
       })
     '';
-    lazy.tiposDeArchivo = [ "markdown" ];
+    lazy = {
+      tiposDeArchivo = [ "markdown" ];
+      comandos = [ "Obsidian" ];
+    };
   };
 }

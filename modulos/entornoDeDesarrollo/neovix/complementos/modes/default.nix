@@ -1,13 +1,13 @@
 {
-  pkgs,
-  lib,
   config,
+  util,
+  usuario,
   ...
 }:
 {
-  programs.neovix.complementos."Modes" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Modes" = {
     activar = false;
-    paquete = (import ../../util/deGithub.nix { inherit pkgs lib; }) {
+    paquete = util.vim.obtenerComplementoDeGithub {
       rev = "0932ba4e0bdc3457ac89a8aeed4d56ca0b36977a";
       ref = "main";
       repo = "mvllow/modes.nvim";

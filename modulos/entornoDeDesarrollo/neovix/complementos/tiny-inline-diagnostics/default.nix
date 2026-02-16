@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Tiny Inline Diagnostics" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Tiny Inline Diagnostics" = {
     paquete = pkgs.vimPlugins.tiny-inline-diagnostic-nvim;
     configuracion = /* lua */ ''
       require("tiny-inline-diagnostic").setup({

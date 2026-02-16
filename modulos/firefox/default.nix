@@ -3,7 +3,7 @@
   config,
   usuario,
   pkgs,
-  inputs,
+  perfiles,
   ...
 }:
 let
@@ -19,20 +19,16 @@ in
   };
 
   config = lib.mkIf cfg.firefox.activar {
-    home-manager.users.${usuario}.programs.firefox =
-      let
-        perfiles = import ./perfiles { inherit lib pkgs; };
-      in
-      {
-        enable = true;
-        package = (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { });
-        profiles = perfiles;
-        languagePacks = [
-          "es-MX"
-          "es-ES"
-        ];
-        policies.ExtensionSettings =
-          (import ./perfiles/extensiones.nix { inherit pkgs lib; }).configuracionParaPolicies;
-      };
+    home-manager.users.${usuario}.programs.firefox = {
+      enable = true;
+      package = (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { });
+      profiles = import ./perfiles { inherit lib pkgs perfiles; };
+      languagePacks = [
+        "es-MX"
+        "es-ES"
+      ];
+      policies.ExtensionSettings =
+        (import ./perfiles/extensiones.nix { inherit pkgs lib; }).configuracionParaPolicies;
+    };
   };
 }

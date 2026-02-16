@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Mini Move" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Mini Move" = {
     paquete = pkgs.vimPlugins.mini-move;
     configuracion = /* lua */ ''
       require("mini.move").setup({

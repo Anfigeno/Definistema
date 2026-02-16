@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."IncRename" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."IncRename" = {
     paquete = pkgs.vimPlugins.inc-rename-nvim;
     configuracion = /* lua */ ''
       require("inc_rename").setup({})

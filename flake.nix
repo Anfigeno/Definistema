@@ -41,12 +41,20 @@
         config.allowUnfree = true;
         overlays = [ inputs.firefox-addons.overlays.default ];
       };
+      lib = pkgs.lib;
+      util = import ./util.nix { inherit pkgs lib; };
 
       usuario = "anfitrion";
       maquinas = [
         "probas"
         "l470"
         "h81m"
+      ];
+      perfiles = [
+        "Productividad"
+        "Defecto"
+        "Procrastinación"
+        "Investigación"
       ];
     in
     {
@@ -60,6 +68,9 @@
                 inputs
                 maquina
                 usuario
+                util
+                lib
+                perfiles
                 ;
             };
             modules = [

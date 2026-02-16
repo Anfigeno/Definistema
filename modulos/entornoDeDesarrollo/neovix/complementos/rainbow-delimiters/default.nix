@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Rainbow Delimiters" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Rainbow Delimiters" = {
     paquete = pkgs.vimPlugins.rainbow-delimiters-nvim;
     configuracion = /* lua */ ''
       local rainbow_delimiters = require("rainbow-delimiters")

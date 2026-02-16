@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Ufo" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Ufo" = {
     paquete = pkgs.vimPlugins.nvim-ufo;
     dependencias = with pkgs.vimPlugins; [
       promise-async

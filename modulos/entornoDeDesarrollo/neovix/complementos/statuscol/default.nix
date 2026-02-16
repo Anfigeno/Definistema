@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Statuscol" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Statuscol" = {
     activar = false;
     paquete = pkgs.vimPlugins.statuscol-nvim;
     configuracion = /* lua */ ''

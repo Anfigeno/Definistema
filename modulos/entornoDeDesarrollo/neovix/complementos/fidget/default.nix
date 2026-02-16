@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Fidget" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Fidget" = {
     paquete = pkgs.vimPlugins.fidget-nvim;
     configuracion = /* lua */ ''
       require("fidget").setup({})

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.formateadores = {
+  home-manager.users.${usuario}.programs.neovix.formateadores = {
     "biome".paquete = pkgs.biome;
     "fish_indent".paquete = pkgs.fish;
     "autopep8".paquete = pkgs.python314Packages.autopep8;

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Stay Centered" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Stay Centered" = {
     paquete = pkgs.vimPlugins.stay-centered-nvim;
     configuracion = /* lua */ ''
       require("stay-centered").setup({

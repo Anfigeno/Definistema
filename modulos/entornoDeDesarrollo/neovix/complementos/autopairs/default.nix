@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Autopairs" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Autopairs" = {
     paquete = pkgs.vimPlugins.nvim-autopairs;
     dependencias = with pkgs.vimPlugins; [ mini-icons ];
     configuracion = /* lua */ ''

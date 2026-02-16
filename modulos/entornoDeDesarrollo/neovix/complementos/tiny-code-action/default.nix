@@ -1,7 +1,12 @@
-{ pkgs, lib, ... }:
 {
-  programs.neovix.complementos."Tiny Code Action" = {
-    paquete = (import ../../util/deGithub.nix { inherit pkgs lib; }) {
+  pkgs,
+  util,
+  usuario,
+  ...
+}:
+{
+  home-manager.users.${usuario}.programs.neovix.complementos."Tiny Code Action" = {
+    paquete = util.vim.obtenerComplementoDeGithub {
       rev = "897de9af9e3aa6e59bcb9fec760a7eb02d00e264";
       ref = "main";
       repo = "rachartier/tiny-code-action.nvim";

@@ -1,7 +1,12 @@
-{ pkgs, lib, ... }:
 {
-  programs.neovix.complementos."Direnv" = {
-    paquete = (import ../../util/deGithub.nix { inherit pkgs lib; }) {
+  util,
+  pkgs,
+  usuario,
+  ...
+}:
+{
+  home-manager.users.${usuario}.programs.neovix.complementos."Direnv" = {
+    paquete = util.vim.obtenerComplementoDeGithub {
       rev = "4dfc8758a1deab45e37b7f3661e0fd3759d85788";
       ref = "main";
       repo = "NotAShelf/direnv.nvim";

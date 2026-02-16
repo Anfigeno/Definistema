@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Which Key" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Which Key" = {
     paquete = pkgs.vimPlugins.which-key-nvim;
     dependencias = with pkgs.vimPlugins; [ mini-icons ];
     configuracion = /* lua */ ''

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Satellite" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Satellite" = {
     paquete = pkgs.vimPlugins.satellite-nvim;
     configuracion = /* lua */ ''
       require("satellite").setup({

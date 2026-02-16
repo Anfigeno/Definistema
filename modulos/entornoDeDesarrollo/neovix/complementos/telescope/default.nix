@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Telescope" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Telescope" = {
     paquete = pkgs.vimPlugins.telescope-nvim;
     dependencias = with pkgs.vimPlugins; [
       plenary-nvim

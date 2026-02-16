@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Hover" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Hover" = {
     # activar = false;
     paquete = pkgs.vimPlugins.hover-nvim;
     configuracion = /* lua */ ''

@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Mini Surround" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Mini Surround" = {
     paquete = pkgs.vimPlugins.mini-surround;
     configuracion = /* lua */ ''
       require("mini.surround").setup()

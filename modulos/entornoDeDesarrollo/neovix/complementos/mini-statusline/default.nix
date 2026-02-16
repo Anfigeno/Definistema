@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Mini Statusline" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Mini Statusline" = {
     paquete = pkgs.vimPlugins.mini-statusline;
     dependencias = with pkgs.vimPlugins; [
       mini-icons

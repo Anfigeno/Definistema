@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.lenguajes = {
+  home-manager.users.${usuario}.programs.neovix.lenguajes = {
     "nu" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [ nu ];
       lsps = [ "nushell" ];

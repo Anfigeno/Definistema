@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.entornosDeEjecucion = {
+  home-manager.users.${usuario}.programs.neovix.entornosDeEjecucion = {
     "lua" = {
       paquete = pkgs.lua;
       configuracionDeCodeRunner = "lua";

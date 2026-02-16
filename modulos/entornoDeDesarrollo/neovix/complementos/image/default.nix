@@ -1,11 +1,12 @@
 {
   pkgs,
-  lib,
+  util,
+  usuario,
   ...
 }:
 {
-  programs.neovix.complementos."Image" = {
-    paquete = (import ../../util/deGithub.nix { inherit pkgs lib; }) {
+  home-manager.users.${usuario}.programs.neovix.complementos."Image" = {
+    paquete = util.vim.obtenerComplementoDeGithub {
       rev = "446a8a5cc7a3eae3185ee0c697732c32a5547a0b";
       ref = "master";
       repo = "3rd/image.nvim";

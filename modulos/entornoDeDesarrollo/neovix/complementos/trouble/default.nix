@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, usuario, ... }:
 {
-  programs.neovix.complementos."Trouble" = {
+  home-manager.users.${usuario}.programs.neovix.complementos."Trouble" = {
     paquete = pkgs.vimPlugins.trouble-nvim;
     configuracion = /* lua */ ''
       require("trouble").setup({
