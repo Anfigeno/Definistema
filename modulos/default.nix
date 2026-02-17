@@ -17,5 +17,6 @@
     ./steam
     ./obs
     ./mestizo256nix
+    ./silentSDDM
   ];
 }

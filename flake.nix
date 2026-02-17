@@ -26,6 +26,11 @@
       url = "github:TemaMestizo/Mestizo256Nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -34,6 +39,7 @@
       nixpkgs,
       nixpkgs-inestable,
       home-manager,
+      silentSDDM,
       ...
     }@inputs:
     let
@@ -85,6 +91,7 @@
                 nixpkgs.pkgs = pkgs;
                 nix.settings.download-buffer-size = 524288000;
               }
+              silentSDDM.nixosModules.default
               home-manager.nixosModules.home-manager
               ./maquinas/configuracionPorDefecto.nix
             ];

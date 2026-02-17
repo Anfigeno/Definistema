@@ -26,6 +26,7 @@ in
       pipewire.activar = true;
       swww.activar = true;
       fontconfig.activar = true;
+      silentSDDM.activar = true;
 
       entornoHyprland = {
         hyprland.activar = true;
