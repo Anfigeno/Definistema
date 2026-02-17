@@ -86,17 +86,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1770489539,
-        "narHash": "sha256-BotqBVJK3gFOd5jdvEyc07rFcmr1GUOi9clgwesilDc=",
-        "ref": "refs/heads/main",
-        "rev": "e5c82ee2bf42403cceb0b3b2a56d1011493be72f",
-        "revCount": 9,
-        "type": "git",
-        "url": "file:///home/anfitrion/Codigo/Nix/Mestizo256Nix"
+        "lastModified": 1770490196,
+        "narHash": "sha256-z9IgI9MdCAb7CsPhguGd0vLyznAHvrM/bKLOO1JhyZ4=",
+        "owner": "TemaMestizo",
+        "repo": "Mestizo256Nix",
+        "rev": "fecc2f7c877e67808a75e8d8598849b5e10dff3b",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/anfitrion/Codigo/Nix/Mestizo256Nix"
+        "owner": "TemaMestizo",
+        "repo": "Mestizo256Nix",
+        "type": "github"
       }
     },
     "nixpkgs": {
