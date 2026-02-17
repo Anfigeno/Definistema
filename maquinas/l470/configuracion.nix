@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   ...
 }:
 {
@@ -16,6 +17,7 @@
 
     paquetes = with pkgs; [
       prismlauncher
+      pkgs-unstable.stoat-desktop
     ];
   };
 

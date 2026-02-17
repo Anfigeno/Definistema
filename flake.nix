@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-inestable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -31,6 +32,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-inestable,
       home-manager,
       ...
     }@inputs:
@@ -40,6 +42,10 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [ inputs.firefox-addons.overlays.default ];
+      };
+      pkgs-unstable = import nixpkgs-inestable {
+        inherit system;
+        config.allowUnfree = true;
       };
       lib = pkgs.lib;
       util = import ./util.nix { inherit pkgs lib; };
@@ -71,6 +77,7 @@
                 util
                 lib
                 perfiles
+                pkgs-unstable
                 ;
             };
             modules = [
