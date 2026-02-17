@@ -9,6 +9,11 @@
           clear_suggestion = "<C-e>",
           accept_word = "<C-j>",
         },
+        ignore_filetypes = {
+          "neo-tree-popup",
+          "neo-tree",
+          "telescopeprompt"
+        }
       })
     '';
     lazy.eventos = [
