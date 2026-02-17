@@ -7,6 +7,7 @@
 }:
 {
   home-manager.users.${usuario}.programs.neovix.complementos."Obsidian" = {
+    activar = false;
     paquete = pkgs.vimPlugins.obsidian-nvim;
     dependencias = with pkgs.vimPlugins; [
       telescope-nvim
