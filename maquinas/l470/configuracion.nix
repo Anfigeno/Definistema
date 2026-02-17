@@ -16,7 +16,6 @@
 
     paquetes = with pkgs; [
       prismlauncher
-      stoat-desktop
     ];
   };
 

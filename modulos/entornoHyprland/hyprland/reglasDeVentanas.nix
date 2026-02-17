@@ -14,5 +14,5 @@ let
   ];
 in
 ventanasTransparentes
-|> map (ventana: if ventana.condicion then "match:class ${ventana.clase}, opacity 0.9" else "")
+|> map (ventana: if ventana.condicion then "opacity 0.9, class:${ventana.clase}" else "")
 |> builtins.filter (x: x != "")

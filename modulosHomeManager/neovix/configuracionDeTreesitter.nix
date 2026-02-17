@@ -24,7 +24,7 @@ in
         |> lib.mapAttrsToList (_: lenguaje: lenguaje.gramaticas)
         |> lib.lists.flatten;
       configuracion = /* lua */ ''
-        require('nvim-treesitter').setup({
+        require('nvim-treesitter.configs').setup({
           highlight = { enable = true },
           indent = { enable = true },
         })
