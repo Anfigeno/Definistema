@@ -11,6 +11,7 @@
       "cssls".paquete = pkgs.vscode-css-languageserver;
       "fish_lsp".paquete = pkgs.fish-lsp;
       "basedpyright".paquete = pkgs.basedpyright;
+      "jsonls".paquete = pkgs.vscode-json-languageserver;
 
       "gopls" = {
         paquete = pkgs.gopls;

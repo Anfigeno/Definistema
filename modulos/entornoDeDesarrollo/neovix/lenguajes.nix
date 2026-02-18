@@ -117,11 +117,13 @@
     };
     "json" = {
       gramaticas = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+        jsonc
         json
         json5
         jsonnet
       ];
       formateadores = [ "biome" ];
+      lsps = [ "jsonls" ];
     };
   };
 }
