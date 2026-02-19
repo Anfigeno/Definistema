@@ -33,7 +33,7 @@ in
           disable_ligatures = "never";
           font_size = 11;
           modify_font = ''
-            cell_height 10px
+            cell_height 12px
           '';
 
           window_padding_width = 0;
