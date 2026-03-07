@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  usuario,
   ...
 }:
 let
@@ -10,6 +9,7 @@ let
 in
 {
   imports = [
+    ./wl-clip-persist
     ./hyprland
     ./mouse
   ];
@@ -31,6 +31,7 @@ in
       entornoHyprland = {
         hyprland.activar = true;
         mouse.activar = true;
+        wl-clip-persist.activar = true;
       };
 
       paquetes = with pkgs; [
