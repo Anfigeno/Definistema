@@ -27,6 +27,7 @@ in
       swww.activar = true;
       fontconfig.activar = true;
       silentSDDM.activar = true;
+      satty.activar = true;
 
       entornoHyprland = {
         hyprland.activar = true;

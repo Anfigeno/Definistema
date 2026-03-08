@@ -18,5 +18,6 @@
     ./obs
     ./mestizo256nix
     ./silentSDDM
+    ./satty
   ];
 }
