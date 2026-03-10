@@ -68,11 +68,15 @@ in
               default = "";
               description = "Configuracion Lua del complemento";
             };
-            opts = mkOption {
-              type = types.nullOr (types.attrsOf types.anything);
-              default = null;
-              description = "Opciones del complemento";
-            };
+            opts =
+              let
+                util = import ./util.nix { inherit lib; };
+              in
+              mkOption {
+                type = types.nullOr util.fusionProfundaDeAttrs;
+                default = null;
+                description = "Opciones del complemento";
+              };
             lazy = {
               activar = mkOption {
                 type = types.bool;
