@@ -1,6 +1,7 @@
 { pkgs, usuario, ... }:
 {
   home-manager.users.${usuario}.programs.neovix.complementos."Supermaven" = {
+    activar = false;
     paquete = pkgs.vimPlugins.supermaven-nvim;
     opts = {
       keymaps = {

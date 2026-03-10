@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./windsurf
     ./obsidian
     ./lsp-file-operations
     ./supermaven
