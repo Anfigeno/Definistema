@@ -6,10 +6,11 @@
       ref = "main";
       repo = "aronjohanns/smooth-resize.nvim";
     };
+    opts = {
+      disabled_fts = [ "fyler" ];
+    };
     configuracion = /* lua */ ''
-      require("smooth-resize").setup({
-        disabled_fts = { "fyler" }
-      })
+      require("smooth-resize").setup(opts)
     '';
     lazy.eventos = [ "VeryLazy" ];
   };

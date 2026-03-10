@@ -22,11 +22,10 @@
       telescope-nvim
     ];
     dependenciasDeSistema = [ pkgs.delta ];
-    configuracion = /* lua */ ''
-      require("tiny-code-action").setup({
-        backend = "delta"
-      })
-    '';
+    opts = {
+      backend = "delta";
+    };
+    configuracion = /* lua */ ''require("tiny-code-action").setup(opts)'';
     lazy = {
       eventos = [ "LspAttach" ];
       teclas."gra" = {

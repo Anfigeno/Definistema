@@ -6,7 +6,8 @@
       ref = "main";
       repo = "adlrwbr/keep-split-ratio.nvim";
     };
-    configuracion = /* lua */ ''require("keep-split-ratio").setup({})'';
+    opts = { };
+    configuracion = /* lua */ ''require("keep-split-ratio").setup(opts)'';
     lazy.eventos = [ "BufEnter" ];
   };
 }

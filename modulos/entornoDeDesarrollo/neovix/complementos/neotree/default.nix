@@ -1,4 +1,9 @@
-{ pkgs, usuario, ... }:
+{
+  pkgs,
+  usuario,
+  lib,
+  ...
+}:
 {
   home-manager.users.${usuario}.programs.neovix.complementos = {
     "LSP File Operations".dependencias = [
@@ -11,20 +16,23 @@
         plenary-nvim
         nui-nvim
       ];
-      configuracion = /* lua */ ''
-        require("neo-tree").setup {
-          popup_border_style = "",
-          window = { width = 50 },
-          event_handlers = {
-            {
-              event = "file_open_requested",
-              handler = function()
+      opts = {
+        popup_border_style = "rounded";
+        window = {
+          width = 50;
+        };
+        event_handlers = [
+          {
+            event = "file_open_requested";
+            handler = lib.mkLuaInline /* lua */ ''
+              function()
                 vim.cmd("Neotree close")
               end
-            },
-          },
-        }
-      '';
+            '';
+          }
+        ];
+      };
+      configuracion = /* lua */ ''require("neo-tree").setup(opts)'';
       lazy = {
         activar = false;
         teclas = {

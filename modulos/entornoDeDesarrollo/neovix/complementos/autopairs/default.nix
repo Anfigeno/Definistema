@@ -3,8 +3,9 @@
   home-manager.users.${usuario}.programs.neovix.complementos."Autopairs" = {
     paquete = pkgs.vimPlugins.nvim-autopairs;
     dependencias = with pkgs.vimPlugins; [ mini-icons ];
+    opts = {};
     configuracion = /* lua */ ''
-      require("nvim-autopairs").setup()
+      require("nvim-autopairs").setup(opts)
 
       local npairs = require("nvim-autopairs")
       local Rule = require("nvim-autopairs.rule")

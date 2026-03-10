@@ -11,15 +11,35 @@
       dependencias = with pkgs.vimPlugins; [
         friendly-snippets
       ];
+      opts = {
+        keymap = {
+          preset = "default";
+        };
+        appearance = {
+          nerd_font_variant = "mono";
+        };
+        completion = {
+          documentation = {
+            auto_show = true;
+          };
+        };
+        sources = {
+          default = [
+            "lsp"
+            "path"
+            "snippets"
+            "buffer"
+          ];
+        };
+        fuzzy = {
+          implementation = "prefer_rust_with_warning";
+        };
+        signature = {
+          enabled = false;
+        };
+      };
       configuracion = /* lua */ ''
-        require("blink.cmp").setup(require("mestizo256.integraciones_especiales.blink").obtener({
-          keymap = { preset = "default" },
-          appearance = { nerd_font_variant = "mono" },
-          completion = { documentation = { auto_show = true } },
-          sources = { default = { "lsp", "path", "snippets", "buffer" } },
-          fuzzy = { implementation = "prefer_rust_with_warning" },
-          signature = { enabled = false },
-        }))
+        require("blink.cmp").setup(require("mestizo256.integraciones_especiales.blink").obtener(opts))
       '';
       lazy.eventos = [
         "CmdlineEnter"

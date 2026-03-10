@@ -2,11 +2,10 @@
 {
   home-manager.users.${usuario}.programs.neovix.complementos."Trouble" = {
     paquete = pkgs.vimPlugins.trouble-nvim;
-    configuracion = /* lua */ ''
-      require("trouble").setup({
-        auto_preview = false
-      })
-    '';
+    opts = {
+      auto_preview = false;
+    };
+    configuracion = /* lua */ ''require("trouble").setup(opts)'';
     lazy = {
       comandos = [ "Trouble" ];
       teclas = {

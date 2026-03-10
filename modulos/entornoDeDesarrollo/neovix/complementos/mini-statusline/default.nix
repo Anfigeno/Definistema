@@ -7,9 +7,10 @@
       mini-diff
       mini-git
     ];
+    opts = { };
     configuracion = /* lua */ ''
       require("mini.statusline").setup(
-        require("mestizo256.integraciones_especiales.mini-statusline").obtener()
+        require("mestizo256.integraciones_especiales.mini-statusline").obtener(opts)
       )
     '';
     lazy.eventos = [ "VimEnter" ];

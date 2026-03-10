@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   usuario,
   ...
 }:
@@ -11,28 +10,26 @@
       scope-nvim
       mini-icons
     ];
+    opts = {
+      options = {
+        separator_style = "slant";
+        offsets =
+          [
+            "fyler"
+            "neo-tree"
+          ]
+          |> map (tda: {
+            filetype = tda;
+            text = "Archivos";
+            highlight = "NeoTreeNormal";
+            text_align = "center";
+            separator = false;
+          });
+      };
+    };
     configuracion = /* lua */ ''
+      require("bufferline").setup(opts)
       require("scope").setup({})
-
-      require("bufferline").setup({
-        options = {
-          separator_style = "slant",
-          offsets = ${
-            [
-              "fyler"
-              "neo-tree"
-            ]
-            |> map (tda: {
-              filetype = tda;
-              text = "Archivos";
-              highlight = "NeoTreeNormal";
-              text_align = "center";
-              separator = false;
-            })
-            |> lib.generators.toLua { }
-          }
-        },
-      })
     '';
     lazy = {
       eventos = [ "BufEnter" ];
@@ -90,7 +87,7 @@
           descripcion = "Bufferline: Elegir buffer";
         };
         "<space>br" = {
-          comando = /* vim */ '':BufferLineTabRename '';
+          comando = /* vim */ ":BufferLineTabRename ";
           descripcion = "Bufferline: Renombrar pestaña";
         };
       };

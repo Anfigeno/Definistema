@@ -7,22 +7,20 @@
       nvim-treesitter
     ];
     dependenciasDeSistema = [ pkgs.ripgrep ];
-    configuracion = /* lua */ ''
-      require("telescope").setup({
-        defaults = {
-          prompt_prefix = " ",
-          selection_caret = " ",
-
-          sorting_strategy = "ascending",
-          layout_config = {
-            horizontal = {
-              prompt_position = "top",
-            },
-            height = 0.80,
-          },
-        },
-      })
-    '';
+    opts = {
+      defaults = {
+        prompt_prefix = " ";
+        selection_caret = " ";
+        sorting_strategy = "ascending";
+        layout_config = {
+          horizontal = {
+            prompt_position = "top";
+          };
+          height = 0.80;
+        };
+      };
+    };
+    configuracion = /* lua */ ''require("telescope").setup(opts)'';
     lazy.teclas = {
       "<space>ff" = {
         accion = /* lua */ ''require("telescope.builtin").find_files()'';

@@ -2,9 +2,8 @@
 {
   home-manager.users.${usuario}.programs.neovix.complementos."Fidget" = {
     paquete = pkgs.vimPlugins.fidget-nvim;
-    configuracion = /* lua */ ''
-      require("fidget").setup({})
-    '';
+    opts = { };
+    configuracion = /* lua */ ''require("fidget").setup(opts)'';
     lazy.eventos = [ "VeryLazy" ];
   };
 }

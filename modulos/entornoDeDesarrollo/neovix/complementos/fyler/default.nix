@@ -4,9 +4,8 @@
     activar = false;
     paquete = pkgs.vimPlugins.fyler-nvim;
     dependencias = with pkgs.vimPlugins; [ mini-icons ];
-    configuracion = /* lua */ ''
-      require("fyler").setup {}
-    '';
+    opts = { };
+    configuracion = /* lua */ ''require("fyler").setup(opts)'';
     lazy.teclas = {
       "<C-n>" = {
         accion = /* lua */ ''

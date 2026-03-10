@@ -12,7 +12,9 @@
       ref = "main";
       repo = "mvllow/modes.nvim";
     };
-    dependencias = [ config.programs.neovix.complementos."Mestizo".paquete ];
+    dependencias = [
+      config.home-manager.users.${usuario}.programs.neovix.complementos."Mestizo 256".paquete
+    ];
     configuracion = /* lua */ ''
       require("modes").setup({
         colors = require("mestizo.claves.integraciones.especial.modes"),

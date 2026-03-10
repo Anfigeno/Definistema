@@ -12,13 +12,12 @@
       repo = "OXY2DEV/markview.nvim";
     };
     dependencias = with pkgs.vimPlugins; [ mini-icons ];
-    configuracion = /* lua */ ''
-      require("markview").setup({
-        preview = {
-          icon_provider = "mini",
-        }
-      })
-    '';
+    opts = {
+      preview = {
+        icon_provider = "mini";
+      };
+    };
+    configuracion = /* lua */ ''require("markview").setup(opts)'';
     lazy.activar = false;
   };
 }

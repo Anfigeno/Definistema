@@ -12,12 +12,14 @@
       repo = "NotAShelf/direnv.nvim";
     };
     dependenciasDeSistema = [ pkgs.direnv ];
-    configuracion = /* lua */ ''
-      require("direnv").setup({
-        bin = "${pkgs.direnv}/bin/direnv",
-        statusline = { enabled = true, icon = "󱚟 " }
-      })
-    '';
+    opts = {
+      bin = "${pkgs.direnv}/bin/direnv";
+      statusline = {
+        enabled = true;
+        icon = "󱚟 ";
+      };
+    };
+    configuracion = /* lua */ ''require("direnv").setup(opts)'';
     lazy = {
       eventos = [
         "BufReadPre"

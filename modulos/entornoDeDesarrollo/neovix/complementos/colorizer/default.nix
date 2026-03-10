@@ -2,9 +2,8 @@
 {
   home-manager.users.${usuario}.programs.neovix.complementos."Colorizer" = {
     paquete = pkgs.vimPlugins.nvim-colorizer-lua;
-    configuracion = /* lua */ ''
-      require("colorizer").setup({})
-    '';
+    opts = { };
+    configuracion = /* lua */ ''require("colorizer").setup(opts)'';
     lazy.eventos = [ "BufReadPre" ];
   };
 }

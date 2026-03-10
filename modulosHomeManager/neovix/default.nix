@@ -68,6 +68,11 @@ in
               default = "";
               description = "Configuracion Lua del complemento";
             };
+            opts = mkOption {
+              type = types.nullOr (types.attrsOf types.anything);
+              default = null;
+              description = "Opciones del complemento";
+            };
             lazy = {
               activar = mkOption {
                 type = types.bool;
@@ -427,14 +432,23 @@ in
                   else
                     {
                       config = lib.mkLuaInline /* lua */ ''
-                        function()
+                        function(self, opts)
                           ${configuracion}
                         end
                       '';
                     };
 
+                formatearOpciones =
+                  opts:
+                  if opts == null then
+                    { }
+                  else
+                    {
+                      opts = opts;
+                    };
+
                 accionOComando =
-                  tecla: with tecla; if accion != "" then /* lua */ ''function() ${accion} end'' else ''"${comando}"'';
+                  tecla: with tecla; if accion != "" then /* lua */ "function() ${accion} end" else ''"${comando}"'';
 
                 formatearTeclas =
                   teclas:
@@ -466,6 +480,7 @@ in
                       name = clave;
                       lazy = lazy.activar;
                     }
+                    // formatearOpciones complemento.opts
                     // formatearConfiguracion complemento.configuracion
                     // formatearDependencias dependencias
                     // formatearTiposDeArchivos lazy.tiposDeArchivo

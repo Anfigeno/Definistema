@@ -10,7 +10,7 @@
     paquete = pkgs.vimPlugins.lualine-nvim;
     dependencias = with pkgs.vimPlugins; [
       mini-icons
-      config.programs.neovix.complementos."Mestizo".paquete
+      config.home-manager.users.${usuario}.programs.neovix.complementos."Mestizo 256".paquete
     ];
     configuracion = /* lua */ ''
       local colores = require("mestizo.paleta")

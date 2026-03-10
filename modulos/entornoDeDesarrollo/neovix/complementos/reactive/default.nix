@@ -1,4 +1,9 @@
-{ util, usuario, ... }:
+{
+  util,
+  usuario,
+  config,
+  ...
+}:
 {
   home-manager.users.${usuario}.programs.neovix.complementos."Reactive" = {
     paquete = util.vim.obtenerComplementoDeGithub {
@@ -6,11 +11,13 @@
       ref = "main";
       repo = "rasulomaroff/reactive.nvim";
     };
-    configuracion = /* lua */ ''
-      require("reactive").setup({
-        load = "mestizo256"
-      })
-    '';
+    dependencias = [
+      config.home-manager.users.${usuario}.programs.neovix.complementos."Mestizo 256".paquete
+    ];
+    opts = {
+      load = "mestizo256";
+    };
+    configuracion = /* lua */ ''require("reactive").setup(opts)'';
     lazy.activar = false;
   };
 }
