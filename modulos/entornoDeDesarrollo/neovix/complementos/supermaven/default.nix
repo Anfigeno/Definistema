@@ -16,9 +16,15 @@
         }
       })
     '';
-    lazy.eventos = [
-      "CmdlineEnter"
-      "InsertEnter"
-    ];
+    lazy = {
+      eventos = [
+        "CmdlineEnter"
+        "InsertEnter"
+      ];
+      teclas."<space>st" = {
+        comando = "<cmd>Supermaven toggle<cr>";
+        descripcion = "Supermaven: Activar/desactivar";
+      };
+    };
   };
 }
