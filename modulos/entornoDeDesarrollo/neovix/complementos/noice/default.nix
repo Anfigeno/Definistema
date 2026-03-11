@@ -6,7 +6,7 @@
     opts = {
       lsp = {
         signature = {
-          enabled = true;
+          enabled = false;
         };
         hover = {
           enabled = true;
@@ -16,10 +16,10 @@
           "vim.lsp.util.stylize_markdown" = true;
           "cmp.entry.get_documentation" = true;
         };
-        presets = {
-          bottom_search = false;
-          inc_rename = true;
-        };
+      };
+      presets = {
+        bottom_search = true;
+        inc_rename = true;
       };
     };
     configuracion = /* lua */ ''

@@ -35,7 +35,7 @@
           implementation = "prefer_rust_with_warning";
         };
         signature = {
-          enabled = false;
+          enabled = true;
         };
       };
       configuracion = /* lua */ ''
