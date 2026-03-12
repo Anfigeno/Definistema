@@ -19,6 +19,7 @@ in
       wayland.windowManager.hyprland = {
         systemd.variables = [ "--all" ];
         enable = true;
+        plugins = with pkgs.hyprlandPlugins; [ hy3 ];
         settings = lib.recursiveUpdate inputs.mestizo-nix.integraciones.hyprland {
           "$mod" = "SUPER";
           bind = import ./atajosDeTeclado { inherit pkgs lib; };
@@ -28,6 +29,11 @@ in
           general = import ./general.nix;
           group = import ./grupo.nix;
           windowrule = import ./reglasDeVentanas.nix { inherit config; };
+          plugin = {
+            hy3 = {
+              group_inset = 0;
+            };
+          };
         };
       };
 

@@ -1,7 +1,7 @@
 { pkgs, ... }:
 [
   "SUPER SHIFT, r, exec, hyprctl reload"
-  "SUPER SHIFT, c, killactive"
+  "SUPER SHIFT, c, hy3:killactive"
   "SUPER SHIFT, F, togglefloating"
   "SUPER SHIFT, F, centerwindow"
   "SUPER, F, fullscreen"
@@ -9,10 +9,12 @@
   "SUPER, c, centerwindow"
 
   # Cambiar entre ventanas
-  "SUPER, h, movefocus, l"
-  "SUPER, j, movefocus, d"
-  "SUPER, k, movefocus, u"
-  "SUPER, l, movefocus, r"
+  "SUPER, h, hy3:movefocus, l, visible"
+  "SUPER, j, hy3:movefocus, d, visible"
+  "SUPER, k, hy3:movefocus, u, visible"
+  "SUPER, l, hy3:movefocus, r, visible"
+  "SUPER, Tab, hy3:movefocus, r"
+  "SUPER SHIFT, Tab, hy3:movefocus, l"
 
   # Volumen
   ", XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer --increase 5"
@@ -42,16 +44,15 @@
   "SUPER+SHIFT, j, moveactive, 0 40"
 
   # Intercambiar ventanas de lugar
-  "SUPER+SHIFT, h, swapwindow, l"
-  "SUPER+SHIFT, l, swapwindow, r"
-  "SUPER+SHIFT, k, swapwindow, u"
-  "SUPER+SHIFT, j, swapwindow, d"
+  "SUPER+SHIFT, h, hy3:movewindow, l"
+  "SUPER+SHIFT, l, hy3:movewindow, r"
+  "SUPER+SHIFT, k, hy3:movewindow, u"
+  "SUPER+SHIFT, j, hy3:movewindow, d"
 
-  # Crear/Alternar grupo con la ventana activa
-  "SUPER, g, togglegroup"
-
-  # Control de bloqueo de grupos
-  "SUPER+SHIFT, g, lockactivegroup, toggle"
+  "SUPER, s, hy3:makegroup, h"
+  "SUPER, v, hy3:makegroup, v"
+  "SUPER, g, hy3:makegroup, tab, toggle"
+  "SUPER+SHIFT, g, hy3:locktab"
 
   # Navegación entre ventanas del grupo
   "SUPER, Tab, changegroupactive, f"
@@ -65,7 +66,7 @@
     in
     [
       "$mod, code:1${toString i}, workspace, ${toString ws}"
-      "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+      "$mod SHIFT, code:1${toString i}, hy3:movetoworkspace, ${toString ws}"
     ]
   ) 9
 ))
