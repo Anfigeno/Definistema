@@ -21,10 +21,10 @@
     "easeOutQuart, 0.25, 1, 0.5, 1"
   ];
 
-  animation = [
-    "windows, 1, 5, easeInOutQuart, slide"
-    "border, 1, 5, easeOutQuart"
-    "fade, 1, 5, easeOutQuart"
-    "workspaces, 1, 3, easeInOutQuart, slidevert"
-  ];
+  # animation = [
+  #   "windows, 1, 5, easeInOutQuart, slide"
+  #   "border, 1, 5, easeOutQuart"
+  #   "fade, 1, 5, easeOutQuart"
+  #   "workspaces, 1, 3, easeInOutQuart, slidevert"
+  # ];
 }
