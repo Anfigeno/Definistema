@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./cord
     ./windsurf
     ./obsidian
     ./lsp-file-operations
