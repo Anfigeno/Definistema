@@ -14,6 +14,7 @@
     steam.activar = true;
     obs.activar = true;
     mestizo256nix.activar = true;
+    bluetooth.activar = true;
 
     paquetes = with pkgs; [
       prismlauncher

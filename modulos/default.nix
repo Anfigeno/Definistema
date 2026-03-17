@@ -19,5 +19,6 @@
     ./mestizo256nix
     ./silentSDDM
     ./satty
+    ./bluetooth
   ];
 }
