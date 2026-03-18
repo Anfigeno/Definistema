@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 let
@@ -28,20 +29,26 @@ in
   };
 
   config = lib.mkIf cfg.entornoDeDesarrollo.activar {
-    definistema.entornoDeDesarrollo = {
-      bat.activar = true;
-      cliphist.activar = true;
-      delta.activar = true;
-      dircolors.activar = true;
-      direnv.activar = true;
-      fish.activar = true;
-      gh.activar = true;
-      git.activar = true;
-      lsd.activar = true;
-      neovix.activar = true;
-      yazi.activar = true;
-      zellij.activar = true;
-      ssh.activar = true;
+    definistema = {
+      entornoDeDesarrollo = {
+        bat.activar = true;
+        cliphist.activar = true;
+        delta.activar = true;
+        dircolors.activar = true;
+        direnv.activar = true;
+        fish.activar = true;
+        gh.activar = true;
+        git.activar = true;
+        lsd.activar = true;
+        neovix.activar = true;
+        yazi.activar = true;
+        zellij.activar = true;
+        ssh.activar = true;
+      };
+      paquetes = with pkgs; [
+        zip
+        unzip
+      ];
     };
   };
 }
