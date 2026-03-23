@@ -15,6 +15,7 @@
     obs.activar = true;
     mestizo256nix.activar = true;
     bluetooth.activar = true;
+    udiskie.activar = true;
 
     paquetes = with pkgs; [
       prismlauncher
@@ -38,4 +39,6 @@
       "ipv6.route-metric" = 100;
     };
   };
+
+  networking.firewall.enable = false;
 }

@@ -20,5 +20,6 @@
     ./silentSDDM
     ./satty
     ./bluetooth
+    ./udiskie
   ];
 }
